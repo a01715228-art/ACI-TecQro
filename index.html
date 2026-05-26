@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ACITecQro – Capítulo Estudiantil ACI Tec de Monterrey Campus Querétaro. Innovación, competencias y sostenibilidad en ingeniería del concreto.">
+<title>ACITecQro – ACI Tec Querétaro Chapter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0072BC;--green:#4CAF50;--yellow:#FFC107;--orange:#F59E0B;--red:#D32F2F;
+  --gold:#FFD700;
+  --bg:#FFFFFF;--bg2:#F4F7FB;--bg3:#EBF0F7;--bg4:#DDE6F1;
+  --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.16);
+  --text:#1A2035;--text2:#4A5568;--text3:#718096;
+  --shadow:0 2px 16px rgba(0,0,0,0.07);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.11);
+  --nav-h:70px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+input,textarea,select{font-family:inherit;}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{padding:100px 0;}
+.section-alt{background:var(--bg2);}
+
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;}
+.badge-blue{background:rgba(0,114,188,.1);color:var(--blue);border:1px solid rgba(0,114,188,.2);}
+.badge-green{background:rgba(76,175,80,.1);color:var(--green);border:1px solid rgba(76,175,80,.2);}
+.badge-orange{background:rgba(245,158,11,.1);color:var(--orange);border:1px solid rgba(245,158,11,.2);}
+.badge-red{background:rgba(211,47,47,.1);color:var(--red);border:1px solid rgba(211,47,47,.2);}
+.badge-gold{background:rgba(255,193,7,.15);color:#B45309;border:1px solid rgba(255,193,7,.3);}
+.badge-silver{background:rgba(100,116,139,.08);color:#64748B;border:1px solid rgba(100,116,139,.2);}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border-radius:10px;font-weight:600;font-size:.95rem;transition:all .25s ease;cursor:pointer;white-space:nowrap;}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 4px 18px rgba(0,114,188,.3);}
+.btn-primary:hover{background:#0085D9;transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,114,188,.4);}
+.btn-outline-orange{background:transparent;color:var(--orange);border:2px solid var(--orange);position:relative;overflow:hidden;}
+.btn-outline-orange:hover{background:transparent;transform:translateY(-2px);}
+.btn-outline-orange pixel-canvas{position:absolute;inset:0;pointer-events:none;width:100%;height:100%;}
+.btn-outline-orange .btn-label{position:relative;z-index:2;}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 4px 18px rgba(245,158,11,.3);}
+.btn-orange:hover{background:#D97706;transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,11,.4);}
+.btn-lg{padding:16px 36px;font-size:1.05rem;border-radius:12px;}
+
+/* section header */
+.sec-label{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.sec-label::before{content:'';width:18px;height:2px;background:var(--blue);border-radius:1px;}
+.sec-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;margin-bottom:14px;color:var(--text);}
+.sec-sub{font-size:1.05rem;color:var(--text2);max-width:600px;line-height:1.75;}
+.sec-header-center{text-align:center;margin-bottom:56px;}
+.sec-header-center .sec-sub{margin:0 auto;}
+.sec-header{margin-bottom:56px;}
+
+/* reveal animations */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:.1s;}.reveal-d2{transition-delay:.2s;}
+.reveal-d3{transition-delay:.3s;}.reveal-d4{transition-delay:.4s;}.reveal-d5{transition-delay:.5s;}
+
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.7;}100%{transform:scale(2);opacity:0;}}
+@keyframes scrollDot{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(10px);opacity:0;}}
+@keyframes spinY{from{transform:rotateY(0);}to{transform:rotateY(360deg);}}
+@keyframes spin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+
+/* ===== NAVBAR (floating island) ===== */
+.navbar{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;width:max-content;max-width:calc(100vw - 32px);background:rgba(0,85,145,0.88);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(255,255,255,0.16);border-radius:18px;padding:7px 10px;box-shadow:0 8px 32px rgba(0,0,0,0.28),0 2px 8px rgba(0,0,0,0.14),inset 0 1px 0 rgba(255,255,255,0.12);transition:all .3s ease;}
+.navbar.scrolled{background:rgba(0,72,128,0.96);box-shadow:0 12px 40px rgba(0,0,0,0.36),0 4px 12px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.1);}
+.nav-inner{padding:0;height:36px;display:flex;align-items:center;gap:4px;min-width:0;white-space:nowrap;}
+.nav-logo{display:flex;align-items:center;gap:8px;flex-shrink:0;padding-right:10px;border-right:1px solid rgba(255,255,255,0.18);margin-right:4px;}
+.nav-logo img{height:32px;width:auto;}
+.nav-logo-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;line-height:1.2;color:#fff;}
+.nav-logo-text span{color:#7DD3FC;}
+.nav-links{display:flex;align-items:center;gap:0;}
+.nav-link{padding:5px 8px;border-radius:999px;font-size:.74rem;font-weight:500;color:rgba(255,255,255,0.82);transition:all .2s ease;position:relative;white-space:nowrap;}
+.nav-link::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%) scaleX(0);width:12px;height:2px;background:#fff;border-radius:1px;transition:transform .2s ease;}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,0.1);}
+.nav-link:hover::after{transform:translateX(-50%) scaleX(1);}
+.nav-cta{position:relative;overflow:hidden;isolation:isolate;background:rgba(255,255,255,0.18)!important;color:#fff!important;border:1px solid rgba(255,255,255,0.38)!important;border-radius:999px!important;padding:6px 16px;flex-shrink:0;font-size:.75rem;font-weight:700;backdrop-filter:blur(14px) brightness(1.08);-webkit-backdrop-filter:blur(14px) brightness(1.08);box-shadow:inset 2px 2px 1px rgba(255,255,255,0.22),inset -1px -1px 1px rgba(0,0,0,0.12),0 2px 12px rgba(0,0,0,0.18),0 0 0 1px rgba(255,255,255,0.08) inset;transition:all .25s cubic-bezier(.1,.4,.2,1);}
+.nav-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(to bottom,rgba(255,255,255,0.18),rgba(255,255,255,0));border-radius:999px 999px 0 0;pointer-events:none;z-index:1;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{background:rgba(255,255,255,0.28)!important;transform:scale(1.05);box-shadow:inset 2px 2px 1px rgba(255,255,255,0.3),inset -1px -1px 1px rgba(0,0,0,0.14),0 4px 18px rgba(0,0,0,0.22),0 0 20px rgba(255,255,255,0.1) inset;}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:1px;transition:all .3s ease;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;transform:translateX(-8px);}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+/* Mobile dropdown — floats below the island */
+.mobile-nav{display:none;position:fixed;top:82px;left:50%;transform:translateX(-50%);width:calc(100vw - 32px);max-width:400px;background:rgba(0,72,130,0.97);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);z-index:999;padding:12px 8px;flex-direction:column;gap:0;border-radius:20px;border:1px solid rgba(255,255,255,0.14);box-shadow:0 16px 48px rgba(0,0,0,0.4);}
+.mobile-nav.open{display:flex;}
+.mobile-nav .nav-link{display:block;padding:13px 16px;font-size:.95rem;color:rgba(255,255,255,0.88);border-bottom:1px solid rgba(255,255,255,0.08);border-radius:10px;}
+.mobile-nav .nav-link:last-of-type{border-bottom:none;}
+.mobile-nav .nav-link::after{display:none;}
+.mobile-nav .nav-cta{margin-top:10px;text-align:center;display:block;padding:14px;background:rgba(255,255,255,0.18)!important;color:#fff!important;border-radius:12px;}
+
+/* ===== SCROLL EXPAND HERO ===== */
+#inicio{position:relative;overflow-x:hidden;background:#000;}
+#particles-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.scroll-hero-stage{position:relative;height:100dvh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.scroll-hero-bg{position:absolute;inset:0;z-index:0;}
+.scroll-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.scroll-hero-bg-dim{position:absolute;inset:0;background:rgba(0,0,0,.2);}
+.scroll-hero-media-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:16px;overflow:hidden;z-index:5;box-shadow:0 0 50px rgba(0,0,0,.4);}
+.scroll-hero-media{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+.scroll-hero-media-dim{position:absolute;inset:0;background:rgba(0,0,0,.3);pointer-events:none;}
+.scroll-hero-titles{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;text-align:center;pointer-events:none;mix-blend-mode:difference;}
+.scroll-hero-t1,.scroll-hero-t2{font-family:'Montserrat',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;color:#bfdbfe;line-height:1;white-space:nowrap;}
+.scroll-hero-meta{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;pointer-events:none;white-space:nowrap;}
+.scroll-hero-date{font-size:1rem;color:rgba(191,219,254,.9);font-weight:500;}
+.scroll-hero-expand-hint{color:rgba(191,219,254,.7);font-size:.8rem;font-weight:600;letter-spacing:.5px;}
+/* Revealed content below stage */
+.scroll-hero-content{padding:80px 24px 100px;background:linear-gradient(to bottom,#050a14 0%,var(--bg) 50%);opacity:0;pointer-events:none;transition:opacity .7s ease;}
+.scroll-hero-content.visible{opacity:1;pointer-events:auto;}
+.scroll-hero-content-inner{max-width:680px;margin:0 auto;text-align:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(0,114,188,.08);border:1px solid rgba(0,114,188,.15);padding:7px 16px;border-radius:100px;font-size:.72rem;font-weight:700;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
+.eyebrow-dot{width:7px;height:7px;background:var(--blue);border-radius:50%;position:relative;flex-shrink:0;}
+.eyebrow-dot::after{content:'';position:absolute;inset:-4px;border:1.5px solid var(--blue);border-radius:50%;animation:pulseRing 1.8s ease-out infinite;}
+.hero-title{font-family:'Montserrat',sans-serif;font-size:clamp(2.4rem,5.5vw,4rem);font-weight:900;line-height:1.05;margin-bottom:18px;letter-spacing:-1px;color:var(--text);}
+.hero-title .t-blue{color:var(--blue);}
+.hero-tagline{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--text2);font-weight:300;font-style:italic;margin-bottom:10px;line-height:1.5;}
+.hero-sub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.83rem;color:var(--text3);margin-bottom:38px;justify-content:center;}
+.hero-sub .sep{opacity:.5;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;justify-content:center;}
+.hero-aci{display:flex;align-items:center;gap:16px;padding-top:26px;border-top:1px solid var(--border);justify-content:center;}
+.hero-aci img{height:32px;width:auto;opacity:.7;}
+.hero-aci-info small{font-size:.7rem;color:var(--text3);display:block;}
+.hero-aci-info strong{font-size:.8rem;color:var(--text2);display:block;margin-top:1px;}
+
+/* ===== QUIÉNES SOMOS ===== */
+#quienes-somos{background:var(--bg2);}
+.qs-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.qs-desc{font-size:1.03rem;color:var(--text2);line-height:1.85;margin-bottom:32px;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.stat-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 14px;text-align:center;transition:all .3s ease;box-shadow:var(--shadow);}
+.stat-box:hover{border-color:var(--blue);transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,114,188,.15);}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:1.9rem;font-weight:800;color:var(--blue);display:block;line-height:1;}
+.stat-lbl{font-size:.7rem;color:var(--text3);margin-top:5px;line-height:1.4;}
+.aci-chip{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 18px;box-shadow:var(--shadow);}
+.aci-chip img{height:40px;width:auto;flex-shrink:0;}
+.aci-chip small{font-size:.7rem;color:var(--text3);}
+.aci-chip strong{display:block;font-size:.88rem;color:var(--text);margin-top:2px;}
+.qs-images{display:flex;flex-direction:column;gap:14px;}
+.qs-img{border-radius:14px;overflow:hidden;}
+.qs-img-main{aspect-ratio:4/3;}
+.qs-img-sec{aspect-ratio:16/9;}
+.qs-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.qs-img:hover img{transform:scale(1.04);}
+
+/* ===== QUÉ HACEMOS ===== */
+#que-hacemos{background:var(--bg);}
+.activities-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:48px;}
+.ac-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px 20px;transition:all .3s ease;cursor:default;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+.ac-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--card-color,var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
+.ac-card:hover{transform:translateY(-6px);border-color:var(--card-color,var(--blue));box-shadow:0 12px 32px rgba(0,0,0,.12);}
+.ac-card:hover::after{transform:scaleX(1);}
+.ac-card:hover .ac-ico{box-shadow:0 0 18px var(--card-color,var(--blue));border-color:var(--card-color,var(--blue));}
+.ac-ico{width:50px;height:50px;border-radius:11px;background:rgba(0,0,0,.03);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:all .3s ease;color:var(--card-color,var(--blue));}
+.ac-ico svg{width:24px;height:24px;}
+.ac-title{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:8px;color:var(--text);}
+.ac-desc{font-size:.8rem;color:var(--text2);line-height:1.7;}
+.qh-banner{border-radius:16px;overflow:hidden;aspect-ratio:21/7;position:relative;}
+.qh-banner img{width:100%;height:100%;object-fit:cover;}
+.qh-banner-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,14,26,.88) 0%,rgba(10,14,26,.15) 60%,transparent 100%);display:flex;align-items:center;padding:40px;}
+.qh-overlay-text h3{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:8px;color:#fff;}
+.qh-overlay-text p{font-size:.88rem;color:rgba(255,255,255,.82);max-width:380px;line-height:1.6;}
+
+/* ===== LOGROS ===== */
+#logros{background:var(--bg2);}
+.timeline{position:relative;display:flex;flex-direction:column;gap:72px;}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--blue) 0%,var(--green) 33%,var(--yellow) 66%,var(--red) 100%);transform:translateX(-50%);}
+.tl-row{display:grid;grid-template-columns:1fr 68px 1fr;align-items:start;gap:28px;}
+.tl-row:nth-child(even) .tl-card{order:3;}
+.tl-row:nth-child(even) .tl-spacer{order:1;}
+.tl-dot{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid;background:#fff;flex-shrink:0;position:relative;z-index:1;align-self:flex-start;margin-top:20px;font-size:1.1rem;font-weight:800;box-shadow:var(--shadow);}
+.dot-blue{border-color:var(--blue);color:var(--blue);}
+.dot-green{border-color:var(--green);color:var(--green);}
+.dot-gold{border-color:var(--yellow);color:#B45309;}
+.dot-red{border-color:var(--red);color:var(--red);}
+.tl-card{background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s ease;box-shadow:var(--shadow);}
+.tl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.lc-img{aspect-ratio:16/9;overflow:hidden;}
+.lc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.tl-card:hover .lc-img img{transform:scale(1.05);}
+.lc-img-duo{display:grid;grid-template-columns:1fr 1fr;gap:2px;aspect-ratio:16/9;overflow:hidden;}
+.lc-img-duo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.tl-card:hover .lc-img-duo img{transform:scale(1.05);}
+.lc-body{padding:22px;}
+.lc-year{font-size:.7rem;color:var(--text3);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.lc-title{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:5px;color:var(--text);}
+.lc-sub{font-size:.83rem;color:var(--text2);margin-bottom:14px;}
+.lc-medals{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.lc-medal{display:flex;align-items:flex-start;gap:9px;font-size:.82rem;color:var(--text);line-height:1.5;}
+.medal-ico{font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.lc-tags{display:flex;gap:6px;flex-wrap:wrap;}
+
+
+/* ===== EVENTOS ===== */
+#eventos{background:var(--bg2);}
+.eventos-list{display:flex;flex-direction:column;gap:0;}
+.ev-item{display:grid;grid-template-columns:auto 1fr;gap:28px;padding-bottom:44px;position:relative;}
+.ev-item:not(:last-child)::before{content:'';position:absolute;left:30px;top:62px;bottom:0;width:2px;background:var(--border);}
+.ev-dot{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid;flex-shrink:0;position:relative;z-index:1;background:#fff;box-shadow:var(--shadow);}
+.ev-dot svg{width:26px;height:26px;}
+.ev-blue{border-color:var(--blue);color:var(--blue);}
+.ev-green{border-color:var(--green);color:var(--green);}
+.ev-orange{border-color:var(--orange);color:var(--orange);}
+.ev-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s ease;box-shadow:var(--shadow);}
+.ev-card:hover{border-color:var(--border2);transform:translateX(4px);box-shadow:var(--shadow-lg);}
+.ev-card-body{display:grid;grid-template-columns:1fr auto;gap:20px;padding:22px;align-items:center;}
+.ev-date-chip{display:inline-block;padding:3px 11px;border-radius:100px;font-size:.7rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:9px;}
+.chip-blue{background:rgba(0,114,188,.1);color:var(--blue);}
+.chip-green{background:rgba(76,175,80,.1);color:var(--green);}
+.chip-orange{background:rgba(245,158,11,.1);color:var(--orange);}
+.ev-name{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:3px;color:var(--text);}
+.ev-loc{font-size:.8rem;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:5px;}
+.ev-loc svg{width:13px;height:13px;flex-shrink:0;}
+.ev-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.ev-chip{display:flex;align-items:center;gap:5px;font-size:.76rem;color:var(--text2);background:rgba(0,0,0,.04);border:1px solid var(--border);padding:4px 11px;border-radius:100px;}
+.ev-chip svg{width:12px;height:12px;}
+.ev-thumb{width:120px;height:90px;border-radius:10px;overflow:hidden;flex-shrink:0;}
+.ev-thumb img{width:100%;height:100%;object-fit:cover;}
+.ev-thumb-placeholder{width:120px;height:90px;border-radius:10px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--bg3);flex-shrink:0;}
+.ev-thumb-placeholder img{max-width:80%;max-height:65%;object-fit:contain;opacity:.65;}
+
+/* ===== PATROCINADORES ===== */
+#patrocinadores{background:var(--bg);position:relative;overflow:hidden;}
+.patro-bg{position:absolute;inset:0;z-index:0;}
+.patro-bg img{width:100%;height:100%;object-fit:cover;opacity:.18;}
+.patro-inner{position:relative;z-index:1;}
+.sponsors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:52px;}
+.sponsor-slot{background:#fff;border:2px dashed rgba(0,0,0,0.13);border-radius:12px;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:.78rem;color:var(--text3);letter-spacing:.5px;transition:all .3s ease;cursor:default;box-shadow:var(--shadow);text-decoration:none;}
+.sponsor-slot svg{width:20px;height:20px;opacity:.35;}
+.sponsor-slot:hover{border-color:rgba(0,114,188,.4);background:rgba(0,114,188,.03);color:var(--text2);}
+.sponsor-slot.filled{border:2px solid rgba(0,0,0,0.10);cursor:pointer;padding:12px 16px;}
+.sponsor-slot.filled img{max-width:100%;max-height:58px;width:auto;object-fit:contain;transition:transform .3s ease,filter .3s ease;}
+.sponsor-slot.filled:hover{border-color:var(--blue);box-shadow:var(--shadow-lg);transform:translateY(-3px);}
+.sponsor-slot.filled:hover img{transform:scale(1.04);}
+.benefits-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:44px;}
+.benefit-card{background:#fff;border:1px solid var(--border);border-radius:13px;padding:18px 16px;transition:all .3s ease;box-shadow:var(--shadow);}
+.benefit-card:hover{border-color:var(--orange);transform:translateY(-3px);box-shadow:0 8px 28px rgba(245,158,11,.12);}
+.benefit-ico{color:var(--orange);margin-bottom:10px;}
+.benefit-ico svg{width:20px;height:20px;}
+.benefit-title{font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:5px;}
+.benefit-desc{font-size:.73rem;color:var(--text3);line-height:1.6;}
+.patro-cta{text-align:center;}
+
+/* ===== REDES ===== */
+#redes{background:var(--bg2);}
+.feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:44px;}
+.post-card{background:#fff;border:1px solid var(--border);border-radius:13px;overflow:hidden;transition:all .3s ease;box-shadow:var(--shadow);}
+.post-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--border2);}
+.post-head{padding:11px 13px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--border);}
+.post-avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#F09433,#DC2743,#BC1888);padding:2px;}
+.post-avatar-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#fff;}
+.post-avatar-inner img{width:100%;height:100%;object-fit:cover;}
+.post-handle{font-size:.76rem;font-weight:700;color:var(--text);}
+.post-time{font-size:.68rem;color:var(--text3);}
+.post-img{aspect-ratio:1;overflow:hidden;}
+.post-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.post-card:hover .post-img img{transform:scale(1.06);}
+.post-caption{padding:11px 13px;font-size:.78rem;color:var(--text2);line-height:1.55;}
+.post-likes{padding:0 13px 11px;font-size:.7rem;color:var(--text3);}
+.social-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:44px;}
+.social-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:11px;font-weight:600;font-size:.92rem;transition:all .25s ease;cursor:pointer;}
+.sb-ig{background:linear-gradient(135deg,#F09433 0%,#DC2743 50%,#BC1888 100%);color:#fff;}
+.sb-tt{background:#111;color:#fff;border:1px solid #333;}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18);}
+.social-btn svg{width:21px;height:21px;}
+.dyk-box{background:#fff;border:1px solid var(--border);border-radius:16px;padding:30px;display:flex;gap:22px;align-items:flex-start;box-shadow:var(--shadow);}
+.dyk-ico{width:52px;height:52px;border-radius:12px;flex-shrink:0;background:rgba(0,114,188,.08);border:1px solid rgba(0,114,188,.15);display:flex;align-items:center;justify-content:center;color:var(--blue);}
+.dyk-ico svg{width:26px;height:26px;}
+.dyk-text h3{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:7px;color:var(--text);}
+.dyk-text p{font-size:.88rem;color:var(--text2);line-height:1.75;}
+
+/* ===== CONTACTO ===== */
+#contacto{background:var(--bg3);}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.form-field{margin-bottom:16px;}
+.form-label{display:block;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:6px;}
+.form-control{width:100%;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.92rem;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;}
+.form-control:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,114,188,.1);}
+.form-control::placeholder{color:var(--text3);}
+textarea.form-control{height:115px;resize:vertical;}
+select.form-control{cursor:pointer;}
+.form-submit{width:100%;margin-top:4px;}
+.ci-logo{margin-bottom:18px;}
+.ci-logo img{height:54px;width:auto;}
+.ci-desc{font-size:.93rem;color:var(--text2);line-height:1.75;margin-bottom:24px;}
+.ci-list{display:flex;flex-direction:column;gap:10px;}
+.ci-item{display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--border);border-radius:11px;padding:13px 16px;box-shadow:var(--shadow);}
+.ci-icon{width:38px;height:38px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ci-icon-blue{background:rgba(0,114,188,.08);color:var(--blue);}
+.ci-icon-ig{background:rgba(188,24,136,.08);color:#BC1888;}
+.ci-icon-loc{background:rgba(76,175,80,.08);color:var(--green);}
+.ci-icon svg{width:17px;height:17px;}
+.ci-lbl{font-size:.7rem;color:var(--text3);display:block;}
+.ci-val{font-size:.88rem;font-weight:600;color:var(--text);}
+
+/* ===== FOOTER ===== */
+.footer{background:#0D1117;border-top:1px solid rgba(255,255,255,0.06);padding:56px 0 26px;}
+.footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px;}
+.footer-brand img{height:46px;width:auto;margin-bottom:14px;}
+.footer-brand p{font-size:.81rem;color:#6B7280;line-height:1.7;max-width:270px;margin-bottom:18px;}
+.footer-socials{display:flex;gap:9px;}
+.footer-soc-btn{width:34px;height:34px;border-radius:7px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:#6B7280;transition:all .2s ease;}
+.footer-soc-btn:hover{border-color:var(--blue);color:var(--blue);}
+.footer-soc-btn svg{width:15px;height:15px;}
+.footer-col-title{font-size:.7rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9CA3AF;margin-bottom:14px;}
+.footer-links{display:flex;flex-direction:column;gap:9px;}
+.footer-lnk{font-size:.81rem;color:#6B7280;transition:color .2s ease;}
+.footer-lnk:hover{color:var(--blue);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.footer-bottom p{font-size:.76rem;color:#6B7280;}
+.footer-bottom-right{display:flex;align-items:center;gap:9px;}
+.footer-bottom-right img{height:20px;opacity:.3;}
+.footer-bottom-right span{font-size:.7rem;color:#6B7280;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1100px){
+  .activities-grid{grid-template-columns:repeat(3,1fr);}
+  .benefits-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:1024px){
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .qs-grid{grid-template-columns:1fr;}
+  .timeline::before{left:26px;}
+  .tl-row{grid-template-columns:56px 1fr;}
+  .tl-row:nth-child(even) .tl-card{order:unset;}
+  .tl-row:nth-child(even) .tl-spacer{display:none;}
+  .tl-spacer{display:none;}
+  .arista-editions{grid-template-columns:1fr 1fr;}
+  .contacto-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .section{padding:64px 0;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .qh-banner{aspect-ratio:4/3;}
+  .arista-editions{grid-template-columns:1fr;}
+  .arista-images,.lc-img-duo{grid-template-columns:1fr;}
+  .lc-img-duo img:last-child{display:none;}
+  .feed-grid{grid-template-columns:1fr 1fr;}
+  .sponsors-grid{grid-template-columns:1fr 1fr;}
+  .benefits-grid{grid-template-columns:1fr 1fr;}
+  .ev-card-body{grid-template-columns:1fr;}
+  .ev-thumb,.ev-thumb-placeholder{display:none;}
+  .dyk-box{flex-direction:column;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column;}
+  .hero-btns .btn{width:100%;justify-content:center;}
+  .activities-grid,.stats-row{grid-template-columns:1fr;}
+  .feed-grid,.benefits-grid,.arista-editions{grid-template-columns:1fr;}
+  .sponsors-grid{grid-template-columns:1fr 1fr;}
+  .social-row{flex-direction:column;align-items:center;}
+}
+
+/* ===== GALERÍA 3D ===== */
+.galeria-section{position:relative;background:#000;overflow:hidden;height:100vh;min-height:600px;}
+.galeria-3d-wrap{position:absolute;inset:0;}
+.galeria-title{position:absolute;top:calc(var(--nav-h) + 18px);left:50%;transform:translateX(-50%);z-index:20;text-align:center;pointer-events:none;white-space:nowrap;}
+.galeria-title .sec-label{justify-content:center;color:#7dd3fc;}
+.galeria-title .sec-label::before{background:#7dd3fc;}
+.galeria-title h2{color:#fff;font-size:clamp(1.5rem,3vw,2.2rem);margin:.35rem 0 0;}
+.galeria-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:20;color:rgba(255,255,255,.35);font-size:.72rem;text-align:center;pointer-events:none;white-space:nowrap;letter-spacing:.3px;}
+/* Floating 3D cards */
+.gal-3d-card{width:160px;background:#1F2121;border-radius:12px;overflow:hidden;padding:10px;box-shadow:0 15px 30px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:box-shadow .3s,border-color .3s,transform .3s;user-select:none;opacity:1!important;}
+.gal-3d-card:hover{box-shadow:0 25px 50px rgba(49,184,198,.5),0 0 30px rgba(49,184,198,.3)!important;border-color:rgba(49,184,198,.5)!important;}
+.gal-3d-card-media{width:100%;height:128px;object-fit:cover;border-radius:8px;display:block;pointer-events:none;}
+.gal-card-likes{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:7px;color:rgba(255,255,255,.85);font-size:11px;font-weight:600;font-family:'Inter',sans-serif;transition:color .2s;}
+.gal-card-likes svg{flex-shrink:0;transition:fill .2s;}
+/* Modal */
+.gal-modal{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.gal-modal.open{opacity:1;pointer-events:all;}
+.gal-modal-wrap{position:relative;max-width:400px;width:92vw;}
+.gal-modal-close{position:absolute;top:-48px;right:0;color:#fff;background:none;border:none;cursor:pointer;transition:color .2s;padding:4px;line-height:0;}
+.gal-modal-close:hover{color:rgba(255,255,255,.6);}
+.gal-back-btn{position:absolute;top:-48px;left:0;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:8px;padding:0 14px;height:36px;font-size:.76rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .1s;white-space:nowrap;}
+.gal-back-btn:hover{background:rgba(255,255,255,.22);}
+.gal-back-btn:active{transform:scale(.97);}
+.gal-modal-card{background:#1F2121;border-radius:16px;padding:16px;transition:transform .12s ease-out;transform-style:preserve-3d;box-shadow:0 83px 83px rgba(0,0,0,.26),0 21px 46px rgba(0,0,0,.29);}
+.gal-modal-media-wrap{position:relative;width:100%;margin-bottom:14px;border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:#000;}
+.gal-modal-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.gal-modal-video{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.gal-modal-title{color:#fff;font-size:1rem;font-weight:600;text-align:center;margin-bottom:12px;}
+.gal-modal-actions{display:flex;gap:8px;}
+.gal-modal-btn{flex:1;height:36px;border-radius:10px;background:#31b8c6;color:#000;font-weight:600;font-size:.85rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .2s,transform .1s;}
+.gal-modal-btn:hover{opacity:.82;}.gal-modal-btn:active{transform:scale(.97);}
+.gal-modal-btn-fav{flex:0 0 36px;border-radius:10px;background:#31b8c6;color:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s,transform .1s;}
+.gal-modal-btn-fav:hover{opacity:.82;}.gal-modal-btn-fav:active{transform:scale(.97);}
+.gal-modal-btn-fav.fav-active svg{fill:currentColor;}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#inicio" class="nav-logo">
+      <img src="imgi_4_width_800.png" alt="ACITecQro Logo">
+      <div class="nav-logo-text">ACITec<span>Qro</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#quienes-somos" class="nav-link">Quiénes Somos</a>
+      <a href="#que-hacemos" class="nav-link">Qué Hacemos</a>
+      <a href="#logros" class="nav-link">Logros</a>
+      <a href="#eventos" class="nav-link">Eventos</a>
+      <a href="#patrocinadores" class="nav-link">Patrocinadores</a>
+      <a href="#redes" class="nav-link">Redes</a>
+      <a href="#galeria" class="nav-link">Galería</a>
+    </div>
+    <a href="#contacto" class="nav-cta">Únete</a>
+    <div class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#quienes-somos" class="nav-link">Quiénes Somos</a>
+  <a href="#que-hacemos" class="nav-link">Qué Hacemos</a>
+  <a href="#logros" class="nav-link">Logros</a>
+  <a href="#eventos" class="nav-link">Eventos</a>
+  <a href="#patrocinadores" class="nav-link">Patrocinadores</a>
+  <a href="#redes" class="nav-link">Redes</a>
+  <a href="#galeria" class="nav-link">Galería</a>
+  <a href="#contacto" class="nav-link nav-cta">Únete</a>
+</nav>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- ===== HERO (Scroll Expand) ===== -->
+<section id="inicio">
+  <!-- Stage: full-screen scroll-expand area -->
+  <div class="scroll-hero-stage">
+    <!-- Background image fades to black as scroll advances -->
+    <div class="scroll-hero-bg" id="heroScrollBg">
+      <img src="ACI.png" alt="ACITecQro" loading="eager">
+      <div class="scroll-hero-bg-dim"></div>
+    </div>
+    <!-- Video window — grows from small to full screen -->
+    <div class="scroll-hero-media-wrap" id="heroMediaWrap">
+      <video class="scroll-hero-media" src="ACI V.MP4" poster="ACI.png"
+             autoplay muted loop playsinline preload="auto"></video>
+      <div class="scroll-hero-media-dim" id="heroMediaDim"></div>
+    </div>
+    <!-- Title split — first word slides left, rest slides right -->
+    <div class="scroll-hero-titles">
+      <h2 class="scroll-hero-t1" id="heroTitleLeft">ACI</h2>
+      <h2 class="scroll-hero-t2" id="heroTitleRight">TecQro</h2>
+    </div>
+    <!-- Floating meta below video -->
+    <div class="scroll-hero-meta">
+      <p class="scroll-hero-date" id="heroMetaDate">Capítulo Estudiantil · Fundado 2022</p>
+      <p class="scroll-hero-expand-hint" id="heroMetaHint">↓ Scroll para expandir</p>
+    </div>
+  </div>
+
+  <!-- Content revealed after full expansion -->
+  <div class="scroll-hero-content" id="heroContent">
+    <div class="scroll-hero-content-inner">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Capítulo Estudiantil ACI · Fundado 2022
+      </div>
+      <h1 class="hero-title"><span class="t-blue">ACI</span>Tec<br>Qro</h1>
+      <p class="hero-tagline">"Construyendo el futuro,<br>rompiendo límites."</p>
+      <div class="hero-sub">
+        <span>Capítulo Estudiantil ACI</span>
+        <span class="sep">·</span>
+        <span>Tec de Monterrey</span>
+        <span class="sep">·</span>
+        <span>Campus Querétaro</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#quienes-somos" class="btn btn-primary btn-lg">Conócenos</a>
+        <a href="#contacto" class="btn btn-outline-orange btn-lg">
+          <pixel-canvas data-gap="8" data-speed="28" data-colors="#FFC107,#F59E0B,#FBBF24,#FDE68A" data-no-focus></pixel-canvas>
+          <span class="btn-label">Únete</span>
+        </a>
+      </div>
+      <div class="hero-aci">
+        <img src="imgi_3_width_800.png" alt="American Concrete Institute">
+        <div class="hero-aci-info">
+          <small>Afiliados al</small>
+          <strong>American Concrete Institute (ACI)</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUIÉNES SOMOS ===== -->
+<section id="quienes-somos" class="section section-alt">
+  <div class="container">
+    <div class="qs-grid">
+      <div class="qs-text">
+        <div class="sec-label reveal">Sobre Nosotros</div>
+        <h2 class="sec-title reveal reveal-d1">¿Quiénes<br>Somos?</h2>
+        <p class="qs-desc reveal reveal-d2">
+          Somos el Capítulo Estudiantil del <strong>American Concrete Institute (ACI)</strong> en el Tec de Monterrey, Campus Querétaro. Promovemos la innovación, investigación y sostenibilidad en ingeniería civil y arquitectura, formando ingenieros con visión global y compromiso con el futuro de la construcción.
+        </p>
+        <div class="stats-row reveal reveal-d3">
+          <div class="stat-box">
+            <span class="stat-num" data-count="2022" data-prefix="">2022</span>
+            <span class="stat-lbl">Año de Fundación</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" data-count="19" data-suffix="+">19+</span>
+            <span class="stat-lbl">Miembros Activos</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num" style="font-size:1.1rem;padding-top:6px;">⭐</span>
+            <span class="stat-lbl">Capítulo Sobresaliente Centro-Sur México</span>
+          </div>
+        </div>
+        <div class="aci-chip reveal reveal-d4">
+          <img src="imgi_3_width_800.png" alt="ACI Logo">
+          <div>
+            <small>Miembros del</small>
+            <strong>American Concrete Institute — Región Centro-Sur México</strong>
+          </div>
+        </div>
+      </div>
+      <div class="qs-images reveal reveal-d2">
+        <div class="qs-img qs-img-main">
+          <img src="imgi_3_width_800.jpg" alt="Equipo ACITecQro con medallas" loading="lazy">
+        </div>
+        <div class="qs-img qs-img-sec">
+          <img src="imgi_3_width_600.jpg" alt="Cilindros de concreto ACI QRO" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUÉ HACEMOS ===== -->
+<section id="que-hacemos" class="section">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Nuestras Actividades</div>
+      <h2 class="sec-title">¿Qué Hacemos?</h2>
+      <p class="sec-sub">Del laboratorio a las competencias internacionales — diseñamos, fabricamos y competimos con concreto de alto rendimiento.</p>
+    </div>
+    <div class="activities-grid">
+      <div class="ac-card reveal" style="--card-color:var(--blue)">
+        <div class="ac-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="ac-title">Competencias</div>
+        <div class="ac-desc">Competencias nacionales e internacionales de concreto. Representamos a México en ACI Convention, ANEIC y ENLACE.</div>
+      </div>
+      <div class="ac-card reveal reveal-d1" style="--card-color:var(--green)">
+        <div class="ac-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <div class="ac-title">Diseño de Especímenes</div>
+        <div class="ac-desc">Diseñamos y fabricamos cilindros, vigas, frisbees y marcos estructurales con mezclas innovadoras de alta resistencia.</div>
+      </div>
+      <div class="ac-card reveal reveal-d2" style="--card-color:var(--green)">
+        <div class="ac-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="ac-title">Concreto Sostenible</div>
+        <div class="ac-desc">Desarrollamos concreto fibro-reforzado y mezclas de bajo carbono, reduciendo la huella ambiental de la construcción.</div>
+      </div>
+      <div class="ac-card reveal reveal-d3" style="--card-color:var(--orange)">
+        <div class="ac-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zm20 0h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div class="ac-title">Talleres Técnicos</div>
+        <div class="ac-desc">Organizamos talleres con expertos de la industria y charlas técnicas para la formación integral de nuestros miembros.</div>
+      </div>
+      <div class="ac-card reveal reveal-d4" style="--card-color:var(--blue)">
+        <div class="ac-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-2.5 2-6 2c-3.5 0-5.5-2-9-2a10.87 10.87 0 00-4 .7V22a10.87 10.87 0 014-.7c3.5 0 5.5 2 9 2 3.5 0 6-2 6-2V4z"/></svg>
+        </div>
+        <div class="ac-title">Divulgación Técnica</div>
+        <div class="ac-desc">Compartimos conocimiento de ingeniería del concreto con nuestra comunidad. Sección "Did You Know?" en @acitecqro.</div>
+      </div>
+    </div>
+    <div class="qh-banner reveal">
+      <img src="imgi_3_width_600 (1).jpg" alt="Estudiantes ACITecQro con frisbees de concreto" loading="lazy">
+      <div class="qh-banner-overlay">
+        <div class="qh-overlay-text">
+          <h3>Ingeniería en Acción</h3>
+          <p>Cada espécimen cuenta una historia de cálculo, experimentación y trabajo en equipo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGROS ===== -->
+<section id="logros" class="section section-alt">
+  <div class="container">
+    <div class="sec-header-center reveal">
+      <div class="sec-label" style="justify-content:center;">Competencias</div>
+      <h2 class="sec-title">Nuestros Logros</h2>
+      <p class="sec-sub">De Guadalajara a Baltimore — representamos a México en el escenario global del concreto estructural.</p>
+    </div>
+    <div class="timeline">
+      <!-- ENLACE 2024 -->
+      <div class="tl-row reveal">
+        <div class="tl-card">
+          <div class="lc-img">
+            <img src="imgi_3_width_877.jpg" alt="ENLACE 2024 Guadalajara" loading="lazy">
+          </div>
+          <div class="lc-body">
+            <div class="lc-year">2024</div>
+            <div class="lc-title">ENLACE 2024 · Guadalajara</div>
+            <div class="lc-sub">Participación latinoamericana representando a México en la competencia regional más importante de ingeniería civil estudiantil.</div>
+            <div class="lc-tags">
+              <span class="badge badge-blue">Participación Internacional</span>
+              <span class="badge badge-blue">ENLACE</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-dot dot-blue reveal">24</div>
+        <div class="tl-spacer"></div>
+      </div>
+      <!-- ENLACE 2025 -->
+      <div class="tl-row reveal">
+        <div class="tl-spacer"></div>
+        <div class="tl-dot dot-green reveal">25</div>
+        <div class="tl-card">
+          <div class="lc-img">
+            <img src="imgi_3_width_800.jpg" alt="ENLACE 2025 Monterrey equipo" loading="lazy">
+          </div>
+          <div class="lc-body">
+            <div class="lc-year">2025</div>
+            <div class="lc-title">ENLACE 2025 · Monterrey</div>
+            <div class="lc-sub">Crecimiento notable frente al año anterior, compitiendo contra los mejores capítulos estudiantiles de México y Latinoamérica.</div>
+            <div class="lc-medals">
+              <div class="lc-medal"><span class="medal-ico">🏅</span><span>Lugar <strong>#13 de 37 equipos</strong></span></div>
+            </div>
+            <div class="lc-tags">
+              <span class="badge badge-green">#13 / 37 Equipos</span>
+              <span class="badge badge-green">ENLACE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ANEIC 2025 -->
+      <div class="tl-row reveal">
+        <div class="tl-card">
+          <div class="lc-img">
+            <img src="imgi_9_width_800.png" alt="ANEIC 2025 Durango México" loading="lazy">
+          </div>
+          <div class="lc-body">
+            <div class="lc-year">2025</div>
+            <div class="lc-title">ANEIC 2025 · Durango</div>
+            <div class="lc-sub">Actuación histórica del capítulo con tres podios en la Asamblea Nacional de Estudiantes de Ingeniería Civil.</div>
+            <div class="lc-medals">
+              <div class="lc-medal"><span class="medal-ico">🥇</span><span><strong>1er Lugar</strong> — Cubos de Concreto Liviano (1,400 kg/m³)</span></div>
+              <div class="lc-medal"><span class="medal-ico">🥈</span><span><strong>2do Lugar</strong> — Frisbee Fibro-Reforzado</span></div>
+              <div class="lc-medal"><span class="medal-ico">🥈</span><span><strong>2do Lugar General</strong> — Categoría Peso/Resistencia</span></div>
+            </div>
+            <div class="lc-tags">
+              <span class="badge badge-gold">1er Lugar Nacional</span>
+              <span class="badge badge-silver">2do General</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-dot dot-gold reveal">🥇</div>
+        <div class="tl-spacer"></div>
+      </div>
+      <!-- Baltimore 2025 -->
+      <div class="tl-row reveal">
+        <div class="tl-spacer"></div>
+        <div class="tl-dot dot-red reveal">🌎</div>
+        <div class="tl-card">
+          <div class="lc-img-duo">
+            <img src="imgi_4_width_800.jpg" alt="Equipo en Baltimore ACI Convention" loading="lazy">
+            <img src="imgi_6_width_800.jpg" alt="Estudiantes ACI FRP Competition" loading="lazy">
+          </div>
+          <div class="lc-body">
+            <div class="lc-year">2025</div>
+            <div class="lc-title">ACI FRP Competition 2025 · Baltimore, EE.UU.</div>
+            <div class="lc-sub">Competencia mundial en la ACI Convention. Más de 50 universidades de todo el mundo. ACITecQro representó a México con un espécimen diseñado para resistencia máxima a compresión.</div>
+            <div class="lc-medals">
+              <div class="lc-medal"><span class="medal-ico">🥈</span><span><strong>4to Mundial</strong> en Resistencia a Compresión (FRP)</span></div>
+              <div class="lc-medal"><span class="medal-ico">🌎</span><span><strong>Top 10 Internacional</strong> — 50+ universidades del mundo</span></div>
+            </div>
+            <div class="lc-tags">
+              <span class="badge badge-red">Top 10 Mundial</span>
+              <span class="badge badge-orange">Baltimore 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Before/After Baltimore specimen -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px;" class="reveal">
+      <div style="border-radius:14px;overflow:hidden;position:relative;aspect-ratio:16/9;">
+        <img src="imgi_3_width_600 (2).jpg" alt="Espécimen Baltimore antes del ensayo" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 100%);padding:14px 16px;">
+          <span style="font-size:.78rem;font-weight:600;color:#fff;">Antes del ensayo — Baltimore 2025</span>
+        </div>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;position:relative;aspect-ratio:16/9;">
+        <img src="imgi_5_width_800 (1).jpg" alt="Espécimen Baltimore después del ensayo" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 100%);padding:14px 16px;">
+          <span style="font-size:.78rem;font-weight:600;color:var(--red);">Después del ensayo — ¡Rotura máxima!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== EVENTOS 2026 ===== -->
+<section id="eventos" class="section section-alt">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Calendario</div>
+      <h2 class="sec-title">Próximos Eventos 2026</h2>
+      <p class="sec-sub">Un año de grandes retos — del escenario internacional al concurso propio.</p>
+    </div>
+    <div class="eventos-list">
+    </div>
+  </div>
+</section>
+
+<!-- ===== PATROCINADORES ===== -->
+<section id="patrocinadores" class="section">
+  <div class="patro-bg"><img src="imgi_8_width_800.jpg" alt="" aria-hidden="true" loading="lazy"></div>
+  <div class="container patro-inner">
+    <div class="sec-header-center reveal">
+      <div class="sec-label" style="justify-content:center;">Alianzas Estratégicas</div>
+      <h2 class="sec-title">Nuestros Patrocinadores</h2>
+      <p class="sec-sub">Empresas líderes que apuestan por el talento joven y la ingeniería del futuro.</p>
+    </div>
+    <div class="sponsors-grid reveal">
+      <a href="https://www.maingpres.com/" target="_blank" rel="noopener" class="sponsor-slot filled">
+        <img src="MAINGPRES2.png" alt="Maingpres" loading="lazy">
+      </a>
+      <a href="https://sepsacv.com.mx/" target="_blank" rel="noopener" class="sponsor-slot filled">
+        <img src="SEPSA.png" alt="SEPSA" loading="lazy">
+      </a>
+      <a href="https://element5.mx/" target="_blank" rel="noopener" class="sponsor-slot filled">
+        <img src="EL5.png" alt="Element 5" loading="lazy">
+      </a>
+      <a href="https://www.efcoforms.com/es/conozca-a-efco/" target="_blank" rel="noopener" class="sponsor-slot filled">
+        <img src="EFCO.png" alt="EFCO" loading="lazy">
+      </a>
+      <div class="sponsor-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Tu empresa aquí</div>
+      <div class="sponsor-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Tu empresa aquí</div>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="benefit-title">Visibilidad de Marca</div>
+        <div class="benefit-desc">Logo en eventos, redes sociales y materiales oficiales del capítulo.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d1">
+        <div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div class="benefit-title">Ponencia Técnica</div>
+        <div class="benefit-desc">Presenta tu empresa y tecnología ante ingenieros del futuro.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d2">
+        <div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="benefit-title">Stand en Evento ACITecQro</div>
+        <div class="benefit-desc">Espacio exclusivo para exhibición en nuestros eventos con cientos de asistentes.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d3">
+        <div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="benefit-title">Reclutamiento de Talento</div>
+        <div class="benefit-desc">Acceso directo a los mejores estudiantes de Ingeniería Civil del Tec.</div>
+      </div>
+      <div class="benefit-card reveal reveal-d4">
+        <div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <div class="benefit-title">Contenido en Redes</div>
+        <div class="benefit-desc">Menciones y contenido dedicado en @acitecqro con más de 15,000 vistas.</div>
+      </div>
+    </div>
+    <div class="patro-cta reveal">
+      <a href="#contacto" class="btn btn-orange btn-lg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Sé Patrocinador
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REDES ===== -->
+<section id="redes" class="section section-alt">
+  <div class="container">
+    <div class="sec-header-center reveal">
+      <div class="sec-label" style="justify-content:center;">Síguenos</div>
+      <h2 class="sec-title">Redes y Divulgación</h2>
+      <p class="sec-sub">Contenido técnico, competencias y más — todo en @acitecqro.</p>
+    </div>
+    <div class="feed-grid">
+      <div class="post-card reveal">
+        <div class="post-head">
+          <div class="post-avatar"><div class="post-avatar-inner"><img src="imgi_4_width_800.png" alt="ACITecQro"></div></div>
+          <div><div class="post-handle">@acitecqro</div><div class="post-time">Divulgación técnica</div></div>
+        </div>
+        <div class="post-img"><img src="imgi_3_width_600.jpg" alt="Did You Know - Cilindros de concreto" loading="lazy"></div>
+        <div class="post-caption">🔬 <strong>Did You Know?</strong> Los cilindros de concreto se ensayan a los 28 días para medir su resistencia máxima a compresión. ¿Sabes cuánto puede soportar uno?</div>
+        <div class="post-likes">❤️ 342 Me gusta</div>
+      </div>
+      <div class="post-card reveal reveal-d1">
+        <div class="post-head">
+          <div class="post-avatar"><div class="post-avatar-inner"><img src="imgi_4_width_800.png" alt="ACITecQro"></div></div>
+          <div><div class="post-handle">@acitecqro</div><div class="post-time">Baltimore 2025</div></div>
+        </div>
+        <div class="post-img"><img src="imgi_4_width_800.jpg" alt="Equipo Baltimore ACI Convention 2025" loading="lazy"></div>
+        <div class="post-caption">🇺🇸 ¡En la <strong>ACI Convention Baltimore 2025</strong>! Representamos a México entre más de 50 universidades del mundo. Top 10 internacional en FRP Competition.</div>
+        <div class="post-likes">❤️ 518 Me gusta</div>
+      </div>
+      <div class="post-card reveal reveal-d2">
+        <div class="post-head">
+          <div class="post-avatar"><div class="post-avatar-inner"><img src="imgi_4_width_800.png" alt="ACITecQro"></div></div>
+          <div><div class="post-handle">@acitecqro</div><div class="post-time">ANEIC 2025</div></div>
+        </div>
+        <div class="post-img"><img src="imgi_9_width_800.png" alt="ANEIC 2025 equipo México" loading="lazy"></div>
+        <div class="post-caption">🏆 <strong>ANEIC 2025 · Durango</strong> — 1er lugar cubos de concreto liviano + 2do lugar frisbee fibro-reforzado + 2do general. ¡Orgullo ACITecQro!</div>
+        <div class="post-likes">❤️ 724 Me gusta</div>
+      </div>
+    </div>
+    <div class="social-row reveal">
+      <a href="https://www.instagram.com/aci_tecqro?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="social-btn sb-ig">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @acitecqro en Instagram
+      </a>
+      <a href="https://www.tiktok.com/@acitecqro?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-btn sb-tt">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:21px;height:21px;"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        @acitecqro en TikTok
+      </a>
+    </div>
+    <div class="dyk-box reveal">
+      <div class="dyk-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="dyk-text">
+        <h3>Did You Know? — Divulgación Técnica</h3>
+        <p>Nuestra sección de divulgación comparte datos fascinantes sobre el concreto, la ingeniería estructural y las innovaciones en materiales de construcción. Seguimos creciendo la cultura técnica entre estudiantes, profesionales y el público en general. Encuéntranos en <strong>@acitecqro</strong> en Instagram y TikTok.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERÍA ===== -->
+<section id="galeria" class="galeria-section">
+  <!-- Three.js WebGL + CSS3D injected by JS -->
+  <div id="galeria-3d-wrap" class="galeria-3d-wrap"></div>
+
+  <!-- Title overlay -->
+  <div class="galeria-title">
+    <div class="sec-label">Nuestros Momentos</div>
+    <h2>Galería</h2>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="gal-modal" class="gal-modal" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+    <div class="gal-modal-wrap">
+      <button class="gal-back-btn" id="gal-back" aria-label="Regresar a galería">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+        Regresar a Galería
+      </button>
+      <button class="gal-modal-close" id="gal-close" aria-label="Cerrar">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="gal-modal-card" id="gal-modal-card">
+        <div class="gal-modal-media-wrap">
+          <img id="gal-modal-img" class="gal-modal-img" alt="" style="display:none">
+          <video id="gal-modal-video" class="gal-modal-video" controls style="display:none"></video>
+        </div>
+        <div class="gal-modal-title" id="gal-modal-title"></div>
+        <div class="gal-modal-actions">
+          <button class="gal-modal-btn" id="gal-download-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar
+          </button>
+          <button class="gal-modal-btn-fav" id="gal-fav-btn" aria-label="Favorito">
+            <svg id="gal-fav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hint -->
+  <p class="galeria-hint">Arrastra para rotar &nbsp;·&nbsp; Scroll para zoom &nbsp;·&nbsp; Clic en una foto para ver</p>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section id="contacto" class="section">
+  <div class="container">
+    <div class="sec-header-center reveal">
+      <div class="sec-label" style="justify-content:center;">Contáctanos</div>
+      <h2 class="sec-title">Únete o Colabora</h2>
+      <p class="sec-sub">¿Quieres ser parte de ACITecQro, patrocinar nuestros eventos o simplemente saber más? Escríbenos.</p>
+    </div>
+    <div class="contacto-grid">
+      <div class="reveal">
+        <form onsubmit="handleForm(event)">
+          <div class="form-field">
+            <label class="form-label" for="nombre">Nombre completo</label>
+            <input class="form-control" id="nombre" type="text" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="email">Correo electrónico</label>
+            <input class="form-control" id="email" type="email" placeholder="tu@correo.com" required>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="org">Universidad / Empresa</label>
+            <input class="form-control" id="org" type="text" placeholder="Tu institución u organización">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="tipo">¿Cómo te podemos ayudar?</label>
+            <select class="form-control" id="tipo">
+              <option value="">Selecciona una opción</option>
+              <option value="unirse">Quiero unirme al capítulo</option>
+              <option value="patrocinio">Patrocinio / Colaboración</option>
+              <option value="info">Información general</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="mensaje">Mensaje</label>
+            <textarea class="form-control" id="mensaje" placeholder="Cuéntanos más..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+      <div class="reveal reveal-d2">
+        <div class="ci-logo">
+          <img src="imgi_4_width_800.png" alt="ACITecQro">
+        </div>
+        <p class="ci-desc">
+          Somos el <strong>Capítulo Estudiantil ACI</strong> del Tec de Monterrey, Campus Querétaro. Fundado en 2022, hemos competido a nivel nacional e internacional, representando a México con orgullo.
+        </p>
+        <div class="ci-list">
+          <div class="ci-item">
+            <div class="ci-icon ci-icon-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div><span class="ci-lbl">Correo</span><span class="ci-val">A01706255@tec.mx</span></div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon ci-icon-ig">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div><span class="ci-lbl">Instagram</span><span class="ci-val">@acitqro</span></div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon ci-icon-loc">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div><span class="ci-lbl">Campus</span><span class="ci-val">Querétaro, Tec de Monterrey</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="imgi_4_width_800.png" alt="ACITecQro">
+        <p>Capítulo Estudiantil del American Concrete Institute en el Tec de Monterrey, Campus Querétaro. Innovación, competencia y sostenibilidad en ingeniería del concreto.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/aci_tecqro?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer-soc-btn" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@acitecqro?is_from_webapp=1&sender_device=pc" class="footer-soc-btn" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          </a>
+          <a href="mailto:A01706255@tec.mx" class="footer-soc-btn" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navegar</div>
+        <div class="footer-links">
+          <a href="#quienes-somos" class="footer-lnk">Quiénes Somos</a>
+          <a href="#que-hacemos" class="footer-lnk">Qué Hacemos</a>
+          <a href="#logros" class="footer-lnk">Logros</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Eventos</div>
+        <div class="footer-links">
+          <a href="#patrocinadores" class="footer-lnk">Patrocinar</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <div class="footer-links">
+          <a href="mailto:A01706255@tec.mx" class="footer-lnk">A01706255@tec.mx</a>
+          <a href="https://www.instagram.com/aci_tecqro?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="footer-lnk" target="_blank" rel="noopener">@acitqro</a>
+          <span class="footer-lnk" style="cursor:default;">Campus Querétaro</span>
+          <span class="footer-lnk" style="cursor:default;">Tec de Monterrey</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ACITecQro · Capítulo Estudiantil ACI · Tec de Monterrey Campus Querétaro</p>
+      <div class="footer-bottom-right">
+        <img src="imgi_3_width_800.png" alt="ACI">
+        <span>American Concrete Institute</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== SCROLL EXPAND HERO ===== */
+(function(){
+  let scrollProgress = 0;
+  let mediaFullyExpanded = false;
+  let touchStartY = 0;
+  let isMobile = window.innerWidth < 768;
+
+  const heroBg    = document.getElementById('heroScrollBg');
+  const mediaWrap = document.getElementById('heroMediaWrap');
+  const mediaDim  = document.getElementById('heroMediaDim');
+  const t1        = document.getElementById('heroTitleLeft');
+  const t2        = document.getElementById('heroTitleRight');
+  const dateEl    = document.getElementById('heroMetaDate');
+  const hintEl    = document.getElementById('heroMetaHint');
+  const content   = document.getElementById('heroContent');
+
+  function clamp(v, lo, hi){ return Math.min(Math.max(v, lo), hi); }
+
+  function updateUI(){
+    const m  = isMobile;
+    const mw = clamp(300 + scrollProgress * (m ? 650 : 1250), 0, window.innerWidth  * 0.95);
+    const mh = clamp(400 + scrollProgress * (m ? 200 :  400), 0, window.innerHeight * 0.85);
+    const tx = scrollProgress * (m ? 180 : 150);
+
+    mediaWrap.style.width        = mw + 'px';
+    mediaWrap.style.height       = mh + 'px';
+    heroBg.style.opacity         = String(1 - scrollProgress);
+    mediaDim.style.opacity       = String(Math.max(0, 0.5 - scrollProgress * 0.3));
+    t1.style.transform           = `translateX(-${tx}vw)`;
+    t2.style.transform           = `translateX(${tx}vw)`;
+    dateEl.style.transform       = `translateX(-${tx}vw)`;
+    hintEl.style.transform       = `translateX(${tx}vw)`;
+    hintEl.style.opacity         = String(Math.max(0, 1 - scrollProgress * 3));
+  }
+
+  function advanceProgress(delta){
+    scrollProgress = clamp(scrollProgress + delta, 0, 1);
+    if(scrollProgress >= 1){
+      mediaFullyExpanded = true;
+      content.classList.add('visible');
+    } else if(scrollProgress < 0.75){
+      content.classList.remove('visible');
+    }
+    updateUI();
+  }
+
+  function onWheel(e){
+    if(mediaFullyExpanded && e.deltaY < 0 && window.scrollY <= 5){
+      mediaFullyExpanded = false;
+      e.preventDefault();
+    } else if(!mediaFullyExpanded){
+      e.preventDefault();
+      advanceProgress(e.deltaY * 0.0009);
+    }
+  }
+
+  function onTouchStart(e){ touchStartY = e.touches[0].clientY; }
+
+  function onTouchMove(e){
+    if(!touchStartY) return;
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchStartY - touchY;
+    if(mediaFullyExpanded && deltaY < -20 && window.scrollY <= 5){
+      mediaFullyExpanded = false;
+      e.preventDefault();
+    } else if(!mediaFullyExpanded){
+      e.preventDefault();
+      advanceProgress(deltaY * (deltaY < 0 ? 0.008 : 0.005));
+      touchStartY = touchY;
+    }
+  }
+
+  function onTouchEnd(){ touchStartY = 0; }
+
+  function onScroll(){ if(!mediaFullyExpanded) window.scrollTo(0, 0); }
+
+  window.addEventListener('wheel',      onWheel,      { passive: false });
+  window.addEventListener('scroll',     onScroll);
+  window.addEventListener('touchstart', onTouchStart, { passive: false });
+  window.addEventListener('touchmove',  onTouchMove,  { passive: false });
+  window.addEventListener('touchend',   onTouchEnd);
+  window.addEventListener('resize', ()=>{ isMobile = window.innerWidth < 768; updateUI(); });
+
+  updateUI(); // apply initial state (small media, full bg)
+})();
+
+/* ===== PARTICLES ===== */
+(function(){
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for(let i=0;i<70;i++){
+    particles.push({
+      x:Math.random()*2000, y:Math.random()*1000,
+      vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
+      r:Math.random()*1.5+.4,
+      o:Math.random()*.3+.06
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach((p,i)=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(0,114,188,${p.o*0.45})`;
+      ctx.fill();
+      for(let j=i+1;j<particles.length;j++){
+        const q=particles[j];
+        const dx=p.x-q.x, dy=p.y-q.y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<130){
+          ctx.beginPath();
+          ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle=`rgba(0,114,188,${.03*(1-d/130)})`;
+          ctx.lineWidth=.6;
+          ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ===== NAVBAR ===== */
+(function(){
+  const nav=document.getElementById('navbar');
+  const ham=document.getElementById('hamburger');
+  const mob=document.getElementById('mobile-nav');
+
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',window.scrollY>50);
+  });
+
+  ham.addEventListener('click',()=>{
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+
+  mob.querySelectorAll('.nav-link').forEach(l=>{
+    l.addEventListener('click',()=>{
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+    });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(){});
+  });
+})();
+
+/* ===== SCROLL REVEAL ===== */
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+
+/* ===== COUNTER ===== */
+(function(){
+  const els=document.querySelectorAll('[data-count]');
+  if(!els.length) return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target;
+      const target=parseInt(el.dataset.count);
+      const suffix=el.dataset.suffix||'';
+      if(isNaN(target)){obs.unobserve(el);return;}
+      let cur=0; const step=target/50;
+      const t=setInterval(()=>{
+        cur=Math.min(cur+step,target);
+        el.textContent=Math.round(cur)+suffix;
+        if(cur>=target){clearInterval(t);}
+      },28);
+      obs.unobserve(el);
+    });
+  },{threshold:.5});
+  els.forEach(el=>obs.observe(el));
+})();
+
+/* ===== FORM ===== */
+function handleForm(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('button[type=submit]');
+
+  // Deshabilitar mientras se envía
+  btn.disabled = true;
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;animation:spin .8s linear infinite"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Enviando…';
+
+  const data = {
+    nombre:  form.querySelector('#nombre').value,
+    email:   form.querySelector('#email').value,
+    org:     form.querySelector('#org').value,
+    tipo:    form.querySelector('#tipo').value,
+    mensaje: form.querySelector('#mensaje').value
+  };
+
+  fetch('https://formspree.io/f/mykvbgwz', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body:    JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    if(res.ok || res.next){
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><polyline points="20 6 9 17 4 12"/></svg> ¡Mensaje enviado!';
+      btn.style.background = 'var(--green)';
+      form.reset();
+      setTimeout(()=>{
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensaje';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    } else {
+      throw new Error('Formspree error');
+    }
+  })
+  .catch(()=>{
+    btn.innerHTML = '⚠ Error — intenta de nuevo';
+    btn.style.background = '#EF4444';
+    btn.disabled = false;
+    setTimeout(()=>{
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensaje';
+      btn.style.background = '';
+    }, 3500);
+  });
+}
+</script>
+
+<!-- ===== GALERÍA 3D (Three.js) ===== -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.min.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ── Media items ── */
+const ITEMS = [
+  {type:'video', src:'VIDEO-2026-05-21-17-00-33.mp4',              title:'ACITecQro — Video'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33.jpg',    title:'Equipo ACITecQro'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33(1).jpg', title:'Competencia'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33(2).jpg', title:'Laboratorio'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33(3).jpg', title:'Cilindros'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33(4).jpg', title:'Pruebas'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33(5).jpg', title:'Equipo'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33(6).jpg', title:'Evento'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-00-33(7).jpg', title:'Trabajo'},
+  {type:'image', src:'Viga.jpg',                                    title:'Viga'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-01-15(1).jpg', title:'Miembros'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-01-15(2).jpg', title:'Actividad'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-01-15(3).jpg', title:'Logros'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-01-34.jpg',    title:'Celebración'},
+  {type:'image', src:'aci fotos/PHOTO-2026-05-21-17-01-42.jpg',    title:'Final'},
+];
+
+const section = document.getElementById('galeria');
+const wrap    = document.getElementById('galeria-3d-wrap');
+const W = () => section.clientWidth;
+const H = () => section.clientHeight;
+
+/* ── WebGL Renderer ── */
+const webgl = new THREE.WebGLRenderer({antialias:true});
+webgl.setPixelRatio(Math.min(window.devicePixelRatio,2));
+webgl.setSize(W(),H());
+webgl.setClearColor(0x000000,1);
+Object.assign(webgl.domElement.style,{position:'absolute',top:'0',left:'0',width:'100%',height:'100%',pointerEvents:'none'});
+wrap.appendChild(webgl.domElement);
+
+/* ── HTML card overlay (2D-projected, avoids CSS3DRenderer scaling issues) ── */
+const overlay = document.createElement('div');
+Object.assign(overlay.style,{position:'absolute',inset:'0',pointerEvents:'none',overflow:'hidden'});
+wrap.appendChild(overlay);
+
+/* ── Camera ── */
+const camera = new THREE.PerspectiveCamera(60,W()/H(),0.1,2000);
+camera.position.set(0,0,30);
+
+/* ── OrbitControls — bound to wrap (receives events from cards via bubbling) ── */
+wrap.style.touchAction = 'none';
+const controls = new OrbitControls(camera, wrap);
+Object.assign(controls,{enablePan:true,enableZoom:true,minDistance:8,maxDistance:60,rotateSpeed:0.5,zoomSpeed:1.2});
+
+/* ── Scene ── */
+const scene = new THREE.Scene();
+
+// 10 000 stars
+const starGeo = new THREE.BufferGeometry();
+const posArr  = new Float32Array(10000*3);
+for(let i=0;i<10000;i++){
+  posArr[i*3]  =(Math.random()-.5)*2000;
+  posArr[i*3+1]=(Math.random()-.5)*2000;
+  posArr[i*3+2]=(Math.random()-.5)*2000;
+}
+starGeo.setAttribute('position',new THREE.BufferAttribute(posArr,3));
+const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({color:0xffffff,size:0.7,sizeAttenuation:true}));
+scene.add(stars);
+
+// Wireframe spheres (same as original CardGalaxy)
+[[2,'#1a1a2e',0.15],[12,'#31b8c6',0.05],[16,'#31b8c6',0.03],[20,'#31b8c6',0.02]].forEach(([r,c,o])=>{
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(r,32,32),
+    new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:o,wireframe:true})));
+});
+scene.add(new THREE.AmbientLight(0xffffff,0.4));
+
+/* ── Golden-ratio sphere card positions (identical algorithm to original) ── */
+const N=ITEMS.length, PHI=(1+Math.sqrt(5))/2;
+const cardPos = ITEMS.map((_,i)=>{
+  const y=1-(i/(N-1))*2, rY=Math.sqrt(1-y*y), th=2*Math.PI*i/PHI;
+  const lr=12+(i%3)*4;
+  return new THREE.Vector3(Math.cos(th)*rY*lr, y*lr, Math.sin(th)*rY*lr);
+});
+
+/* ── Drag-vs-click detection ── */
+let dragDist=0, pdx=0, pdy=0;
+wrap.addEventListener('pointerdown',e=>{dragDist=0;pdx=e.clientX;pdy=e.clientY;},{passive:true});
+wrap.addEventListener('pointermove',e=>{dragDist=Math.hypot(e.clientX-pdx,e.clientY-pdy);},{passive:true});
+
+/* ── Create HTML cards ── */
+const cardEls = ITEMS.map((item,i)=>{
+  const el=document.createElement('div');
+  el.className='gal-3d-card';
+  Object.assign(el.style,{position:'absolute',left:'0',top:'0',pointerEvents:'all',willChange:'transform,opacity'});
+  const likesBadge = `<div class="gal-card-likes" id="gal-likes-${i}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span id="gal-lc-${i}">0</span></div>`;
+  el.innerHTML = item.type==='video'
+    ? `<video class="gal-3d-card-media" src="${item.src}" muted preload="metadata" playsinline></video>${likesBadge}`
+    : `<img class="gal-3d-card-media" src="${item.src}" alt="${item.title}" loading="lazy">${likesBadge}`;
+  // Block pointerdown from reaching OrbitControls (it calls preventDefault which kills click)
+  // Open modal on any pointerup — safe because orbit never starts on cards
+  el.addEventListener('pointerdown', e2=>e2.stopPropagation());
+  el.addEventListener('pointerup',   e2=>{e2.stopPropagation(); openModal(i);});
+  overlay.appendChild(el);
+  return el;
+});
+
+/* ── Likes (localStorage) ── */
+const LS_COUNTS='aci-likes-counts';
+const LS_VOTED ='aci-likes-voted';
+function getLikeCounts(){ try{return JSON.parse(localStorage.getItem(LS_COUNTS))||{};}catch{return{};} }
+function getVoted()     { try{return JSON.parse(localStorage.getItem(LS_VOTED)) ||[];}catch{return[];} }
+function saveCounts(o){ localStorage.setItem(LS_COUNTS,JSON.stringify(o)); }
+function saveVoted(a) { localStorage.setItem(LS_VOTED, JSON.stringify(a)); }
+
+function refreshCardLike(idx){
+  const counts=getLikeCounts(), voted=getVoted();
+  const n=counts[idx]||0;
+  const countEl=document.getElementById(`gal-lc-${idx}`);
+  if(countEl) countEl.textContent=n;
+  const badge=document.getElementById(`gal-likes-${idx}`);
+  if(badge){
+    const liked=voted.includes(idx);
+    const svg=badge.querySelector('svg');
+    if(svg){ svg.setAttribute('fill',liked?'#ff6b6b':'none'); svg.setAttribute('stroke',liked?'#ff6b6b':'currentColor'); }
+    badge.style.color=liked?'#ff6b6b':'';
+  }
+}
+ITEMS.forEach((_,i)=>refreshCardLike(i));
+
+/* ── Modal ── */
+let favActive=false;
+let currentModalIdx=-1;
+
+function openModal(idx){
+  currentModalIdx=idx;
+  const item=ITEMS[idx];
+  const modal=document.getElementById('gal-modal');
+  const img=document.getElementById('gal-modal-img');
+  const vid=document.getElementById('gal-modal-video');
+  if(!modal) return;
+  if(item.type==='video'){
+    img.style.display='none';
+    vid.style.display='block'; vid.src=item.src; vid.load();
+  } else {
+    vid.pause(); vid.src=''; vid.style.display='none';
+    img.style.display='block'; img.src=item.src; img.alt=item.title;
+  }
+  document.getElementById('gal-modal-title').textContent=item.title;
+  favActive=getVoted().includes(idx);
+  updateFav();
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  const modal=document.getElementById('gal-modal');
+  const vid=document.getElementById('gal-modal-video');
+  const card=document.getElementById('gal-modal-card');
+  modal?.classList.remove('open');
+  document.body.style.overflow='';
+  vid.pause(); vid.src='';
+  if(card) card.style.transform='';
+}
+
+function updateFav(){
+  const btn=document.getElementById('gal-fav-btn');
+  const icon=document.getElementById('gal-fav-icon');
+  if(!btn||!icon) return;
+  btn.classList.toggle('fav-active',favActive);
+  icon.setAttribute('fill',  favActive?'currentColor':'none');
+  icon.setAttribute('stroke',favActive?'#ff6b6b':'currentColor');
+  btn.style.background=favActive?'#ff6b6b':'';
+}
+
+document.getElementById('gal-close')?.addEventListener('click',closeModal);
+document.getElementById('gal-back')?.addEventListener('click',()=>{
+  closeModal();
+  document.getElementById('galeria')?.scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('gal-modal')?.addEventListener('click',e=>{if(e.target===e.currentTarget) closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
+document.getElementById('gal-fav-btn')?.addEventListener('click',()=>{
+  const idx=currentModalIdx; if(idx<0) return;
+  const counts=getLikeCounts(), voted=getVoted();
+  favActive=!favActive;
+  if(favActive){
+    counts[idx]=(counts[idx]||0)+1;
+    if(!voted.includes(idx)) voted.push(idx);
+  } else {
+    counts[idx]=Math.max(0,(counts[idx]||0)-1);
+    const i=voted.indexOf(idx); if(i>-1) voted.splice(i,1);
+  }
+  saveCounts(counts); saveVoted(voted);
+  updateFav(); refreshCardLike(idx);
+});
+document.getElementById('gal-download-btn')?.addEventListener('click',()=>{
+  const img=document.getElementById('gal-modal-img');
+  if(img.style.display!=='none'&&img.src){const a=document.createElement('a');a.href=img.src;a.download=img.alt||'foto-aci';a.click();}
+});
+
+// Modal card 3D tilt
+const reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(!reduced){
+  const mc=document.getElementById('gal-modal-card');
+  if(mc){
+    mc.addEventListener('mousemove',e=>{
+      const r=mc.getBoundingClientRect();
+      const rx=-(e.clientY-r.top-r.height/2)/r.height*30;
+      const ry= (e.clientX-r.left-r.width/2)/r.width*30;
+      mc.style.transition='none';
+      mc.style.transform=`perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+    mc.addEventListener('mouseleave',()=>{
+      mc.style.transition='transform .5s ease-out';
+      mc.style.transform='perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+  }
+}
+
+/* ── Render + project cards to 2D ── */
+const _v = new THREE.Vector3();
+(function animate(){
+  requestAnimationFrame(animate);
+  controls.update();
+  stars.rotation.y+=0.0001;
+  stars.rotation.x+=0.00005;
+
+  const w=W(), h=H();
+  cardEls.forEach((el,i)=>{
+    _v.copy(cardPos[i]).project(camera);
+    // hide if behind camera
+    if(_v.z>=1){el.style.visibility='hidden';return;}
+    el.style.visibility='visible';
+
+    const sx=(_v.x+1)/2*w;
+    const sy=(-_v.y+1)/2*h;
+    const dist=cardPos[i].distanceTo(camera.position);
+    // Scale: reference distance 22 → scale 1, closer = bigger, farther = smaller
+    const sc=Math.max(0.18,Math.min(1.6,22/dist));
+    // Fade cards that are very far (behind the sphere)
+    const alpha=Math.max(0,Math.min(1,(1-_v.z)*4));
+    el.style.transform=`translate(-50%,-50%) translate(${sx}px,${sy}px) scale(${sc})`;
+    el.style.zIndex=Math.round((1-_v.z)*5000);
+    el.style.opacity=alpha;
+  });
+
+  webgl.render(scene,camera);
+})();
+
+/* ── Resize ── */
+window.addEventListener('resize',()=>{
+  camera.aspect=W()/H();
+  camera.updateProjectionMatrix();
+  webgl.setSize(W(),H());
+},{passive:true});
+</script>
+
+<!-- ===== PIXEL CANVAS WEB COMPONENT ===== -->
+<script>
+(function(){
+  class _Pixel{
+    constructor(canvas,ctx,x,y,color,speed,delay){
+      this.width=canvas.width; this.height=canvas.height;
+      this.ctx=ctx; this.x=x; this.y=y; this.color=color;
+      this.speed=(Math.random()*.8+.1)*speed;
+      this.size=0; this.sizeStep=Math.random()*.4;
+      this.minSize=.5; this.maxSizeInt=2;
+      this.maxSize=Math.random()*(this.maxSizeInt-this.minSize)+this.minSize;
+      this.delay=delay; this.counter=0;
+      this.counterStep=Math.random()*4+(this.width+this.height)*.01;
+      this.isIdle=false; this.isReverse=false; this.isShimmer=false;
+    }
+    draw(){
+      const o=this.maxSizeInt*.5-this.size*.5;
+      this.ctx.fillStyle=this.color;
+      this.ctx.fillRect(this.x+o,this.y+o,this.size,this.size);
+    }
+    appear(){
+      this.isIdle=false;
+      if(this.counter<=this.delay){this.counter+=this.counterStep;return;}
+      if(this.size>=this.maxSize) this.isShimmer=true;
+      this.isShimmer?this.shimmer():(this.size+=this.sizeStep);
+      this.draw();
+    }
+    disappear(){
+      this.isShimmer=false; this.counter=0;
+      if(this.size<=0){this.isIdle=true;return;}
+      this.size-=.1; this.draw();
+    }
+    shimmer(){
+      if(this.size>=this.maxSize) this.isReverse=true;
+      else if(this.size<=this.minSize) this.isReverse=false;
+      this.isReverse?(this.size-=this.speed):(this.size+=this.speed);
+    }
+  }
+
+  class PixelCanvasElement extends HTMLElement{
+    constructor(){
+      super();
+      this._canvas=document.createElement('canvas');
+      this._ctx=this._canvas.getContext('2d');
+      this._pixels=[]; this._animation=null;
+      this._interval=1000/60; this._prev=performance.now();
+      this._reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+      this._init=false; this._ro=null; this._parent=null;
+      const shadow=this.attachShadow({mode:'open'});
+      const s=document.createElement('style');
+      s.textContent=':host{display:grid;inline-size:100%;block-size:100%;overflow:hidden;}';
+      shadow.appendChild(s); shadow.appendChild(this._canvas);
+    }
+    get _colors(){return this.dataset.colors?.split(',')||['#FFC107','#F59E0B','#FDE68A'];}
+    get _gap(){const v=Number(this.dataset.gap)||5;return Math.max(4,Math.min(50,v));}
+    get _speed(){const v=Number(this.dataset.speed)||35;return this._reduced?0:Math.max(0,Math.min(100,v))*.001;}
+    get _noFocus(){return this.hasAttribute('data-no-focus');}
+    get _variant(){return this.dataset.variant||'default';}
+
+    connectedCallback(){
+      if(this._init)return; this._init=true;
+      this._parent=this.parentElement;
+      requestAnimationFrame(()=>{
+        this._resize();
+        const ro=new ResizeObserver(()=>requestAnimationFrame(()=>this._resize()));
+        ro.observe(this); this._ro=ro;
+      });
+      this._onEnter=()=>this._animate('appear');
+      this._onLeave=()=>this._animate('disappear');
+      this._parent?.addEventListener('mouseenter',this._onEnter);
+      this._parent?.addEventListener('mouseleave',this._onLeave);
+    }
+    disconnectedCallback(){
+      this._init=false; this._ro?.disconnect();
+      this._parent?.removeEventListener('mouseenter',this._onEnter);
+      this._parent?.removeEventListener('mouseleave',this._onLeave);
+      if(this._animation){cancelAnimationFrame(this._animation);this._animation=null;}
+      this._parent=null;
+    }
+    _resize(){
+      if(!this._ctx||!this._init)return;
+      const r=this.getBoundingClientRect();
+      if(!r.width||!r.height)return;
+      const dpr=window.devicePixelRatio||1;
+      const w=Math.floor(r.width), h=Math.floor(r.height);
+      this._canvas.width=w*dpr; this._canvas.height=h*dpr;
+      this._canvas.style.width=w+'px'; this._canvas.style.height=h+'px';
+      this._ctx.setTransform(1,0,0,1,0,0); this._ctx.scale(dpr,dpr);
+      this._mkPixels();
+    }
+    _dist(x,y){
+      const dx=x-this._canvas.width/2, dy=this._canvas.height-y;
+      return Math.sqrt(dx*dx+dy*dy);
+    }
+    _mkPixels(){
+      if(!this._ctx)return; this._pixels=[];
+      for(let x=0;x<this._canvas.width;x+=this._gap)
+        for(let y=0;y<this._canvas.height;y+=this._gap){
+          const color=this._colors[Math.floor(Math.random()*this._colors.length)];
+          const delay=this._reduced?0:this._dist(x,y);
+          this._pixels.push(new _Pixel(this._canvas,this._ctx,x,y,color,this._speed,delay));
+        }
+    }
+    _animate(name){
+      if(this._animation)cancelAnimationFrame(this._animation);
+      const run=()=>{
+        this._animation=requestAnimationFrame(run);
+        const now=performance.now(), passed=now-this._prev;
+        if(passed<this._interval)return;
+        this._prev=now-(passed%this._interval);
+        if(!this._ctx)return;
+        this._ctx.clearRect(0,0,this._canvas.width,this._canvas.height);
+        let idle=true;
+        for(const p of this._pixels){p[name]();if(!p.isIdle)idle=false;}
+        if(idle){cancelAnimationFrame(this._animation);this._animation=null;}
+      };
+      run();
+    }
+  }
+  if(!customElements.get('pixel-canvas'))
+    customElements.define('pixel-canvas',PixelCanvasElement);
+})();
+</script>
+
+<!-- Liquid Glass SVG filter (enhances backdrop distortion in Firefox) -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <filter id="container-glass" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.05" numOctaves="1" seed="1" result="turbulence"/>
+      <feGaussianBlur in="turbulence" stdDeviation="2" result="blurredNoise"/>
+      <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="70" xChannelSelector="R" yChannelSelector="B" result="displaced"/>
+      <feGaussianBlur in="displaced" stdDeviation="4" result="finalBlur"/>
+      <feComposite in="finalBlur" in2="finalBlur" operator="over"/>
+    </filter>
+  </defs>
+</svg>
+</body>
+</html>
