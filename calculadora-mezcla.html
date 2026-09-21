@@ -43,6 +43,7 @@ table td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weig
 .pill{padding:8px 14px;border-radius:999px;font-size:0.8rem;font-weight:700;letter-spacing:0.3px;border:1px solid transparent;transition:background .2s,color .2s}
 .pill.ok{color:#06231c;background:var(--ok);border-color:var(--ok)}
 .pill.bad{color:#2a0510;background:var(--bad);border-color:var(--bad)}
+.pill.warn{color:#2a1a05;background:#ffb347;border-color:#ffb347}
 .highlight{border-color:var(--accent2);box-shadow:0 0 0 1px var(--accent2) inset,0 8px 24px rgba(61,219,184,.15)}
 .highlight h2{color:var(--accent2)}
 footer{margin-top:20px;color:var(--muted);font-size:0.75rem;text-align:center;line-height:1.6}
@@ -249,7 +250,7 @@ footer{margin-top:20px;color:var(--muted);font-size:0.75rem;text-align:center;li
       <div class="card highlight" id="sedCard">
         <h2>10 &#183; Sedimentaci&oacute;n / sangrado <small>(ASTM C232: agua decantada como % del agua de mezclado de la muestra &#183; ASTM C940: asentamiento de la columna)</small></h2>
 
-        <p class="subnote">Captura la masa de agua decantada <b>en cada intervalo</b> (1 g &asymp; 1 mL). ASTM C232 pide leer cada 10 min durante los primeros 40 min y cada 30 min despu&eacute;s, hasta que el sangrado cese. La altura final se mide sobre la superficie del mortero ya consolidado, sin el agua decantada.</p>
+        <p class="subnote">Captura la masa de agua decantada <b>en cada intervalo</b> (1 g &asymp; 1 mL). ASTM C232 pide leer cada 10 min durante los primeros 40 min y cada 30 min despu&eacute;s, hasta que el sangrado cese. La altura final se mide sobre la superficie del mortero ya consolidado, sin el agua decantada. Si solo tienes el <b>total acumulado</b> de un ensayo (p. ej. 4 g a los 30 min), captura una sola fila con ese tiempo y esa masa; si no mediste la altura final usa <b>Estimar h_final</b>, que la deduce del agua sangrada.</p>
 
         <table class="minitable" id="tblLecturas">
           <thead><tr><th style="width:30%">Tiempo (min)</th><th style="width:34%">Agua del intervalo (g)</th><th style="text-align:right">Acumulado (mL)</th><th></th></tr></thead>
@@ -258,6 +259,7 @@ footer{margin-top:20px;color:var(--muted);font-size:0.75rem;text-align:center;li
         <div class="btnrow">
           <button type="button" class="btn-mini" id="addLectura">+ Agregar lectura</button>
           <button type="button" class="btn-mini" id="resetLecturas">Reiniciar lecturas</button>
+          <button type="button" class="btn-mini" id="estimarHf">Estimar h_final con el agua sangrada</button>
           <button type="button" class="btn-mini" id="calibrarK">Calibrar k<sub>b</sub> con el ensayo</button>
         </div>
 
@@ -470,6 +472,7 @@ function calcularSedimentacion(masaTotal, masaAguaTotal, volAguaTotal){
   const vel = (primera && primera.t>0 && area>0) ? (primera.v/densAgua/area*10)*(60/primera.t) : 0;  // mm/h
   const ultPos = [...lect].reverse().find(l=>l.v>0);
   const tCese = ultPos ? ultPos.t : 0;
+  const tUlt = lect.length>0 ? lect[lect.length-1].t : 0;
   const ceso = lect.length>0 && lect[lect.length-1].v===0;
 
   // ---- sedimentación (ASTM C940) ----
@@ -484,7 +487,7 @@ function calcularSedimentacion(masaTotal, masaAguaTotal, volAguaTotal){
   let desv = sangradoML>0 ? (predML-sangradoML)/sangradoML*100 : 0;
   if(Math.abs(desv)<0.05) desv=0;
 
-  ultimoSed = {volExceso, volMuestra, sangradoML};
+  ultimoSed = {volExceso, volMuestra, sangradoML, espesorAgua};
 
   // ---- verificación ----
   const cumpleSang = pctSangrado<=limSang;
@@ -506,7 +509,7 @@ function calcularSedimentacion(masaTotal, masaAguaTotal, volAguaTotal){
   fila(t,'Sangrado por unidad de área (mL/cm²)',fmt(porArea,4));
   fila(t,'Espesor de la lámina de agua (mm)',fmt(espesorAgua,3));
   fila(t,'Velocidad inicial de sangrado (mm/h)',fmt(vel,3));
-  fila(t,'Tiempo de cese del sangrado (min)', ceso ? fmt(tCese,0) : 'no cesó (≥ '+fmt(tCese,0)+')', ceso?'':'row-bad');
+  fila(t,'Tiempo de cese del sangrado (min)', ceso ? fmt(tCese,0) : 'no verificado (≥ '+fmt(tUlt,0)+')');
   fila(t,'Asentamiento Δh = h₀ − h_final (mm)',fmt(sedMM,2));
   fila(t,'SEDIMENTACIÓN (% de la altura)',fmt(pctSed,3)+'%', cumpleSed?'':'row-bad');
   fila(t,'Coherencia lámina de agua / Δh', sedMM>0?fmt(coherencia,2):'—', cohOk?'':'row-bad');
@@ -522,7 +525,8 @@ function calcularSedimentacion(masaTotal, masaAguaTotal, volAguaTotal){
   bar.innerHTML =
     pill(`Sangrado ${fmt(pctSangrado,2)}% ≤ ${fmt(limSang,1)}%`, cumpleSang) +
     pill(`Sedimentación ${fmt(pctSed,3)}% ≤ ${fmt(limSed,2)}%`, cumpleSed) +
-    pill(`Sangrado cesado`, ceso) +
+    (ceso ? pill(`Sangrado cesado a los ${fmt(tCese,0)} min`, true)
+          : `<div class="pill warn">! Cese no verificado (última lectura ${fmt(tUlt,0)} min)</div>`) +
     pill(`Sin segregación (coherencia ${sedMM>0?fmt(coherencia,2):'—'})`, cohOk) +
     pill(`Índice de estabilidad ${fmt(ise,0)}`, ise>=50);
 
@@ -643,6 +647,11 @@ document.getElementById('addLectura').addEventListener('click',()=>{
   calcular();
 });
 document.getElementById('resetLecturas').addEventListener('click',()=>{ initLecturas(); calcular(); });
+document.getElementById('estimarHf').addEventListener('click',()=>{
+  if(!ultimoSed) return;
+  document.getElementById('sedHf').value=Math.max(0, num('sedH0')-ultimoSed.espesorAgua).toFixed(2);
+  calcular();
+});
 document.getElementById('calibrarK').addEventListener('click',()=>{
   if(!ultimoSed || ultimoSed.volExceso<=0 || ultimoSed.volMuestra<=0 || ultimoSed.sangradoML<=0) return;
   const k=ultimoSed.sangradoML/(ultimoSed.volExceso*ultimoSed.volMuestra/1000);
