@@ -1,0 +1,15 @@
+{
+  "name": "Mortero TQRO1 \u00b7 ACI Tec Quer\u00e9taro",
+  "short_name": "Mortero TQRO1",
+  "description": "Dise\u00f1o de mezcla y ensayos para el ACI Mortar Workability Competition 2026.",
+  "start_url": "./calculadora-mezcla.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0e14",
+  "theme_color": "#0b0e14",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

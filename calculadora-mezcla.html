@@ -2,175 +2,248 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculadora de Mezcla — ACI Mortar Workability 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mortero TQRO1</title>
+<meta name="description" content="Dise&ntilde;o de mezcla y ensayos para el ACI Mortar Workability Competition 2026 &#183; ACI Tec Quer&eacute;taro Chapter.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0e14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mortero TQRO1">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap">
 <style>
-
 :root{
-  --bg:#0b0e14; --panel:#131824; --panel2:#171d2b; --border:#232b3d;
-  --txt:#e9edf5; --muted:#8b95ac; --accent:#ff7a3d; --accent2:#3ddbb8;
-  --ok:#3ddbb8; --bad:#ff5470;
+  --bg:#0b0e14; --panel:#141a26; --panel2:#111722; --raised:#0d121b;
+  --border:#232b3d; --hair:rgba(35,43,61,.75);
+  --txt:#e9edf5; --muted:#8b95ac; --dim:#5f6b83;
+  --accent:#ff7a3d; --accent2:#3ddbb8; --bad:#ff5470;
+  --tap:56px;
 }
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 20% -10%,#1b2436,var(--bg) 55%);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;padding:32px 16px 60px}
-.wrap{max-width:1200px;margin:0 auto}
-header{margin-bottom:28px}
-h1{font-size:2.1rem;margin:0;letter-spacing:-0.5px;display:flex;flex-direction:column;gap:4px}
-h1 span{font-size:0.9rem;font-weight:400;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase}
-.grid{display:grid;grid-template-columns:300px 1fr;gap:24px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-.card h2{margin:0 0 14px;font-size:0.95rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.8px;border-bottom:1px solid var(--border);padding-bottom:8px}
-.inputs h2:not(:first-child){margin-top:18px}
-.field{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px}
-.field label{font-size:0.82rem;color:var(--muted)}
-.inputunit{display:flex;align-items:center;gap:6px}
-.field input{width:70px;background:#0d1119;border:1px solid var(--border);color:var(--txt);border-radius:8px;padding:6px 8px;font-size:0.85rem;text-align:right}
-.field input:focus{outline:none;border-color:var(--accent)}
-.unit{font-size:0.7rem;color:var(--accent2);min-width:62px}
-.card h2 small{color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:0.75rem}
-#recalcular{width:100%;margin-top:16px;padding:12px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ff9a5a);color:#1a1005;font-weight:700;letter-spacing:0.5px;cursor:pointer;font-size:0.9rem;text-transform:uppercase;transition:transform .15s}
-#recalcular:hover{transform:translateY(-2px)}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--txt);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overscroll-behavior-y:contain;
+}
+button,input{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+/* ---------- barra superior ---------- */
+.appbar{
+  position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;
+  padding:10px 16px 10px;padding-top:calc(10px + env(safe-area-inset-top,0px));
+  background:rgba(11,14,20,.86);backdrop-filter:blur(20px) saturate(1.5);
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border);
+}
+.appbar .logo{width:38px;height:38px;border-radius:10px;background:#fff;padding:3px;object-fit:contain;flex:none}
+.appbar h1{margin:0;font-family:'Montserrat','Inter',sans-serif;font-size:17px;font-weight:800;letter-spacing:-.2px;line-height:1.15}
+.appbar p{margin:1px 0 0;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px}
+.appbar .who{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.8px;color:var(--accent);border:1px solid rgba(255,122,61,.35);background:rgba(255,122,61,.1);padding:5px 9px;border-radius:999px;white-space:nowrap}
+
+/* ---------- contenido ---------- */
+main{padding:16px 16px calc(92px + env(safe-area-inset-bottom,0px))}
+.view{display:flex;flex-direction:column;gap:14px;animation:fade .22s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.view{animation:none}}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--dim);margin:2px 0 -4px 2px}
+
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:16px;padding:14px 16px}
+.card>h2{margin:0 0 10px;font-family:'Montserrat','Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--accent);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.card>h2 small{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--muted)}
+.card.key{border-color:rgba(61,219,184,.45);box-shadow:0 0 0 1px rgba(61,219,184,.12) inset}
+.card.key>h2{color:var(--accent2)}
+.note{font-size:12.5px;color:var(--muted);margin:0 0 12px}
+.note b{color:var(--txt);font-weight:600}
+
+/* ---------- filas de captura ---------- */
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)}
+.row:last-child{border-bottom:none}
+.row>.lbl{font-size:13.5px;color:var(--muted)}
+.ctrl{display:flex;align-items:center;gap:8px;flex:none}
+.ctrl input{width:94px;text-align:right;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;
+  background:var(--raised);border:1px solid var(--border);border-radius:10px;padding:9px 10px}
+.ctrl input:focus{outline:none;border-color:var(--accent2);background:#0b1017}
+.ctrl .u{font-size:10.5px;color:var(--accent2);width:56px}
+.row.big .ctrl input{width:120px;font-size:19px}
+
+details.fold{border-top:1px solid var(--hair);margin-top:4px}
+details.fold>summary{list-style:none;cursor:pointer;padding:12px 0 6px;font-size:12px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:'+';margin-left:auto;font-size:16px;color:var(--accent)}
+details.fold[open]>summary::after{content:'–'}
+
+/* ---------- tablas de resultados ---------- */
 table{width:100%;border-collapse:collapse}
-table tr{border-bottom:1px solid var(--border)}
-table tr:last-child{border-bottom:none}
-table td{padding:8px 4px;font-size:0.9rem}
-table td:first-child{color:var(--muted)}
-table td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
-.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:700px){.twocol{grid-template-columns:1fr}}
-.statusbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
-.pill{padding:8px 14px;border-radius:999px;font-size:0.8rem;font-weight:700;letter-spacing:0.3px;border:1px solid transparent;transition:background .2s,color .2s}
-.pill.ok{color:#06231c;background:var(--ok);border-color:var(--ok)}
-.pill.bad{color:#2a0510;background:var(--bad);border-color:var(--bad)}
-.highlight{border-color:var(--accent2);box-shadow:0 0 0 1px var(--accent2) inset,0 8px 24px rgba(61,219,184,.15)}
-.highlight h2{color:var(--accent2)}
-footer{margin-top:20px;color:var(--muted);font-size:0.75rem;text-align:center;line-height:1.6}
-.row-bad td{color:var(--bad) !important}
-.moldwrap{background:#0d1119;border:1px solid var(--border);border-radius:12px;padding:8px;margin:10px 0}
-#moldSvg{width:100%;height:auto;display:block}
+table td{padding:9px 0;font-size:13.5px;border-bottom:1px solid var(--hair);vertical-align:baseline}
+table tr:last-child td{border-bottom:none}
+table td:first-child{color:var(--muted);padding-right:10px}
+table td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.row-bad td,.row-bad td:first-child{color:var(--bad)!important}
+
+/* ---------- indicadores ---------- */
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{padding:8px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.2px}
+.pill.ok{color:#05231b;background:var(--accent2)}
+.pill.bad{color:#2a0510;background:var(--bad)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.tiles .val{font-size:21px}
+@media(min-width:560px){.tiles{gap:10px}.tiles .val{font-size:26px}}
+.scorebox{background:var(--raised);border:1px solid var(--border);border-radius:14px;padding:11px 12px}
+.scorebox .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.scorebox .val{font-family:'Montserrat','Inter',sans-serif;font-size:26px;font-weight:800;line-height:1.2;color:var(--accent2);font-variant-numeric:tabular-nums}
+.scorebox .sub{font-size:10.5px;color:var(--dim)}
+.scorebox.bad{border-color:rgba(255,84,112,.5)}
+.scorebox.bad .val{color:var(--bad)}
+
+/* ---------- botones ---------- */
+.btn{display:block;width:100%;min-height:var(--tap);border:none;border-radius:14px;font-weight:700;font-size:15px;letter-spacing:.3px;cursor:pointer;transition:transform .12s ease,opacity .12s}
+.btn:active{transform:scale(.985)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#ff9d63);color:#20120a}
+.btn-ghost{background:var(--raised);border:1px solid var(--border);color:var(--txt)}
+.btn-teal{background:linear-gradient(135deg,var(--accent2),#5ef0cd);color:#05231b}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- graficos ---------- */
+.vizbox{background:var(--raised);border:1px solid var(--border);border-radius:14px;padding:10px}
+.vizbox svg{width:100%;height:auto;display:block}
+.vizcap{font-size:11px;color:var(--dim);text-align:center;margin-top:6px;line-height:1.45}
+.estgrid{display:grid;gap:12px}
+@media(min-width:560px){.estgrid{grid-template-columns:200px 1fr;align-items:start}}
+.beakerwall{fill:none;stroke:#3ddbb8;stroke-width:2;opacity:.85}
+.beakerdash{stroke:#ff7a3d;stroke-width:1.2;stroke-dasharray:4 3}
+.beaktxt{fill:#8b95ac;font-size:10.5px;font-family:'Inter',sans-serif}
+.gradln{stroke:#3ddbb8;stroke-width:1;opacity:.45}
 #moldPlate{fill:#0b0f18;stroke:#3ddbb8;stroke-width:2;opacity:.85}
 #moldInner{fill:none;stroke:#2a3348;stroke-width:1.5;stroke-dasharray:5 4}
 .bolt{fill:#0b0f18;stroke:#3ddbb8;stroke-width:2}
-.dim{fill:#8b95ac;font-size:13px;font-family:'Segoe UI',sans-serif}
+.dim{fill:#8b95ac;font-size:13px;font-family:'Inter',sans-serif}
 .dimline{stroke:#4a5570;stroke-width:1}
 #cavFill{filter:drop-shadow(0 0 7px rgba(217,185,138,.45))}
-.drop{fill:#d9b98a}
+.drop{fill:#d9b98a;animation:dropfall .5s linear forwards}
 @keyframes dropfall{0%{transform:translateY(-14px);opacity:0}15%{opacity:1}100%{transform:translateY(18px);opacity:0}}
-.drop{animation:dropfall .5s linear forwards}
-#verter{width:100%;margin-top:6px;padding:12px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent2),#57f0c9);color:#06231c;font-weight:700;letter-spacing:0.5px;cursor:pointer;font-size:0.9rem;text-transform:uppercase;transition:transform .15s}
-#verter:hover{transform:translateY(-2px)}
-#verter:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
-/* --- 10 - estabilidad (ensayo de sedimentacion) --- */
-.subnote{font-size:.73rem;color:var(--muted);line-height:1.55;margin:0 0 14px}
-.subnote b{color:var(--txt);font-weight:600}
-.estgrid{display:grid;grid-template-columns:230px 1fr;gap:16px;align-items:start}
-@media(max-width:760px){.estgrid{grid-template-columns:1fr}}
-.vizbox{background:#0d1119;border:1px solid var(--border);border-radius:12px;padding:10px}
-.vizbox svg{width:100%;height:auto;display:block}
-.vizcap{font-size:.68rem;color:var(--muted);text-align:center;margin-top:6px;line-height:1.4}
-.scorewrap{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.scorebox{flex:1 1 150px;background:#0d1119;border:1px solid var(--border);border-radius:12px;padding:10px 14px}
-.scorebox .lbl{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.7px}
-.scorebox .val{font-size:1.75rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent2);line-height:1.25}
-.scorebox .sub{font-size:.68rem;color:var(--muted)}
-.scorebox.bad{border-color:var(--bad)}
-.scorebox.bad .val{color:var(--bad)}
-.beakerwall{fill:none;stroke:#3ddbb8;stroke-width:2;opacity:.85}
-.beakerdash{stroke:#ff7a3d;stroke-width:1.2;stroke-dasharray:4 3}
-.beaktxt{fill:#8b95ac;font-size:10.5px;font-family:'Segoe UI',sans-serif}
-.gradln{stroke:#3ddbb8;stroke-width:1;opacity:.45}
+/* ---------- aviso de instalacion ---------- */
+.install{display:none;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(255,122,61,.14),rgba(61,219,184,.1));border:1px solid rgba(255,122,61,.35);border-radius:14px;padding:12px 14px;font-size:12.5px;color:var(--txt)}
+.install.show{display:flex}
+.install b{color:var(--accent)}
+.install button{margin-left:auto;background:none;border:none;color:var(--muted);font-size:19px;line-height:1;cursor:pointer;padding:4px 6px}
 
+/* ---------- barra de pestanas ---------- */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;gap:2px;
+  background:rgba(13,17,25,.93);backdrop-filter:blur(20px) saturate(1.5);
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);border-top:1px solid var(--border);
+  padding:6px 6px;padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+.tab{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:7px 2px;background:none;border:none;border-radius:12px;cursor:pointer;
+  color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.1px}
+.tab svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-selected="true"]{color:var(--accent2);background:rgba(61,219,184,.11)}
+.tab:active{background:rgba(255,255,255,.05)}
 
+footer{margin-top:4px;font-size:11px;color:var(--dim);text-align:center;line-height:1.6}
+
+@media(min-width:900px){
+  .appbar{position:static;max-width:1100px;margin:0 auto;padding-left:0;padding-right:0;border-bottom:none}
+  .tabbar{position:sticky;top:0;bottom:auto;max-width:1100px;margin:0 auto 4px;border-top:none;border-bottom:1px solid var(--border);padding:8px}
+  .tab{flex-direction:row;gap:9px;font-size:13px;padding:11px}
+  main{max-width:1100px;margin:0 auto;padding-bottom:40px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+  body{padding:0 16px}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>Diseño de Mezcla<span>ACI Mortar Workability 2026 — Equipo TQRO1</span></h1>
-  </header>
+<header class="appbar">
+  <img class="logo" src="data:image/png;base64,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" alt="ACI Tec Quer&eacute;taro Chapter" width="38" height="38">
+  <div>
+    <h1>Mortero TQRO1</h1>
+    <p>Mortar Workability 2026</p>
+  </div>
+  <span class="who">Equipo TQRO1</span>
+</header>
 
-  <div class="grid">
-    <section class="card inputs">
-      <h2>1 · Densidades relativas <small>(adimensional)</small></h2>
-      <div class="field"><label>Cemento Portland</label><div class="inputunit"><input type="number" id="densCem" value="3.15" step="0.01"><span class="unit">g/cm³</span></div></div>
-      <div class="field"><label>Ceniza volante (SCM)</label><div class="inputunit"><input type="number" id="densScm" value="2.2" step="0.01"><span class="unit">g/cm³</span></div></div>
-      <div class="field"><label>Arena (SSD)</label><div class="inputunit"><input type="number" id="densArena" value="2" step="0.01"><span class="unit">g/cm³</span></div></div>
-      <div class="field"><label>Agua</label><div class="inputunit"><input type="number" id="densAgua" value="1" step="0.01"><span class="unit">g/cm³</span></div></div>
-      <div class="field"><label>Aditivo PCE</label><div class="inputunit"><input type="number" id="densAdit" value="1.05" step="0.01"><span class="unit">g/cm³</span></div></div>
+<nav class="tabbar" role="tablist" aria-label="Secciones de la app">
+<button class="tab" role="tab" id="tab-diseno" aria-controls="v-diseno" aria-selected="true" data-view="diseno"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Dise&ntilde;o</span></button><button class="tab" role="tab" id="tab-mezcla" aria-controls="v-mezcla" aria-selected="false" data-view="mezcla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 18l-5-9V3"/><path d="M7 15h10"/></svg><span>Mezcla</span></button><button class="tab" role="tab" id="tab-costo" aria-controls="v-costo" aria-selected="false" data-view="costo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M16.5 7.5c0-1.7-2-2.5-4.5-2.5S7.5 5.8 7.5 7.5 9.5 10 12 10s4.5.8 4.5 2.5S14.5 15 12 15s-4.5-.8-4.5-2.5"/></svg><span>Costo</span></button><button class="tab" role="tab" id="tab-lote" aria-controls="v-lote" aria-selected="false" data-view="lote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5 12 4l9 4.5-9 4.5z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 16.5 12 21l9-4.5"/></svg><span>Lote</span></button><button class="tab" role="tab" id="tab-estab" aria-controls="v-estab" aria-selected="false" data-view="estab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10M8 3v12a4 4 0 0 0 8 0V3"/><path d="M8.2 13h7.6"/><path d="M5 21h14"/></svg><span>Estabilidad</span></button>
+</nav>
 
-      <h2>2 · Diseño por m³</h2>
-      <div class="field"><label>Polvo total</label><div class="inputunit"><input type="number" id="polvo" value="500" step="1"><span class="unit">kg/m³</span></div></div>
-      <div class="field"><label>SCM del polvo</label><div class="inputunit"><input type="number" id="pctScm" value="30" step="1"><span class="unit">%</span></div></div>
-      <div class="field"><label>Relación w/p</label><div class="inputunit"><input type="number" id="wp" value="0.45" step="0.01"><span class="unit">kg/kg</span></div></div>
-      <div class="field"><label>Aditivo</label><div class="inputunit"><input type="number" id="aditivo" value="6" step="0.1"><span class="unit">L/m³</span></div></div>
+<main>
 
-      <h2>6 · Precios</h2>
-      <div class="field"><label>Cemento</label><div class="inputunit"><input type="number" id="pCem" value="175"><span class="unit">$/ton</span></div></div>
-      <div class="field"><label>Ceniza volante</label><div class="inputunit"><input type="number" id="pScm" value="150"><span class="unit">$/ton</span></div></div>
-      <div class="field"><label>Arena</label><div class="inputunit"><input type="number" id="pArena" value="15"><span class="unit">$/ton</span></div></div>
-      <div class="field"><label>Agua</label><div class="inputunit"><input type="number" id="pAgua" value="2.5"><span class="unit">$/ton</span></div></div>
-      <div class="field"><label>Aditivo</label><div class="inputunit"><input type="number" id="pAdit" value="3.75"><span class="unit">$/L</span></div></div>
+<section class="view" id="v-diseno" role="tabpanel" aria-labelledby="tab-diseno">
+  <div class="install" id="installTip">
+    <span>Para usarla como app: toca <b>Compartir</b> y luego <b>A&ntilde;adir a pantalla de inicio</b>.</span>
+    <button type="button" id="closeTip" aria-label="Cerrar aviso">&times;</button>
+  </div>
 
-      <h2>7 · GWP</h2>
-      <div class="field"><label>Cemento</label><div class="inputunit"><input type="number" id="gCem" value="0.9" step="0.01"><span class="unit">kgCO₂eq/kg</span></div></div>
-      <div class="field"><label>SCM</label><div class="inputunit"><input type="number" id="gScm" value="0.04" step="0.01"><span class="unit">kgCO₂eq/kg</span></div></div>
-      <div class="field"><label>Arena</label><div class="inputunit"><input type="number" id="gArena" value="0.01" step="0.01"><span class="unit">kgCO₂eq/kg</span></div></div>
-      <div class="field"><label>Aditivo</label><div class="inputunit"><input type="number" id="gAdit" value="2.1" step="0.01"><span class="unit">kgCO₂eq/L</span></div></div>
+  <p class="eyebrow">Proporcionamiento</p>
 
-      <h2>8 · Lote de competencia</h2>
-      <div class="field"><label>Volumen objetivo</label><div class="inputunit"><input type="number" id="volLote" value="650" step="1"><span class="unit">mL</span></div></div>
+  <section class="card">
+    <h2>Dise&ntilde;o por m&sup3;</h2>
+    <label class="row big" for="polvo"><span class="lbl">Polvo total</span><span class="ctrl"><input id="polvo" type="number" inputmode="decimal" value="500" step="1"><span class="u">kg/m&sup3;</span></span></label><label class="row " for="pctScm"><span class="lbl">SCM del polvo</span><span class="ctrl"><input id="pctScm" type="number" inputmode="decimal" value="30" step="1"><span class="u">%</span></span></label><label class="row " for="wp"><span class="lbl">Relaci&oacute;n w/p</span><span class="ctrl"><input id="wp" type="number" inputmode="decimal" value="0.45" step="0.01"><span class="u">kg/kg</span></span></label><label class="row " for="aditivo"><span class="lbl">Aditivo PCE</span><span class="ctrl"><input id="aditivo" type="number" inputmode="decimal" value="6" step="0.1"><span class="u">L/m&sup3;</span></span></label>
+  </section>
 
-      <h2>10 &#183; Estabilidad <small>(ensayo de sedimentaci&oacute;n &#183; 20% de la calificaci&oacute;n)</small></h2>
-      <div class="field"><label>Volumen inicial V&#8320;</label><div class="inputunit"><input type="number" id="v0" value="220" step="1" min="0"><span class="unit">mL</span></div></div>
-      <div class="field"><label>Lectura a 30 min V&#8323;&#8320;</label><div class="inputunit"><input type="number" id="v30" value="216" step="0.1" min="0"><span class="unit">mL</span></div></div>
+  <section class="card">
+    <h2>Densidades relativas <small>g/cm&sup3;</small></h2>
+    <label class="row " for="densCem"><span class="lbl">Cemento Portland</span><span class="ctrl"><input id="densCem" type="number" inputmode="decimal" value="3.15" step="0.01"><span class="u">g/cm&sup3;</span></span></label><label class="row " for="densScm"><span class="lbl">Ceniza volante (SCM)</span><span class="ctrl"><input id="densScm" type="number" inputmode="decimal" value="2.2" step="0.01"><span class="u">g/cm&sup3;</span></span></label><label class="row " for="densArena"><span class="lbl">Arena SSD</span><span class="ctrl"><input id="densArena" type="number" inputmode="decimal" value="2" step="0.01"><span class="u">g/cm&sup3;</span></span></label><label class="row " for="densAgua"><span class="lbl">Agua</span><span class="ctrl"><input id="densAgua" type="number" inputmode="decimal" value="1" step="0.01"><span class="u">g/cm&sup3;</span></span></label><label class="row " for="densAdit"><span class="lbl">Aditivo PCE</span><span class="ctrl"><input id="densAdit" type="number" inputmode="decimal" value="1.05" step="0.01"><span class="u">g/cm&sup3;</span></span></label>
+  </section>
 
-      <button id="recalcular">Recalcular</button>
-    </section>
+  <section class="card">
+    <h2>Supuestos de evaluaci&oacute;n</h2>
+    <details class="fold">
+      <summary>Precios</summary>
+      <label class="row " for="pCem"><span class="lbl">Cemento</span><span class="ctrl"><input id="pCem" type="number" inputmode="decimal" value="175" step="1"><span class="u">$/ton</span></span></label><label class="row " for="pScm"><span class="lbl">Ceniza volante</span><span class="ctrl"><input id="pScm" type="number" inputmode="decimal" value="150" step="1"><span class="u">$/ton</span></span></label><label class="row " for="pArena"><span class="lbl">Arena</span><span class="ctrl"><input id="pArena" type="number" inputmode="decimal" value="15" step="1"><span class="u">$/ton</span></span></label><label class="row " for="pAgua"><span class="lbl">Agua</span><span class="ctrl"><input id="pAgua" type="number" inputmode="decimal" value="2.5" step="0.5"><span class="u">$/ton</span></span></label><label class="row " for="pAdit"><span class="lbl">Aditivo</span><span class="ctrl"><input id="pAdit" type="number" inputmode="decimal" value="3.75" step="0.25"><span class="u">$/L</span></span></label>
+    </details>
+    <details class="fold">
+      <summary>Huella de carbono (GWP)</summary>
+      <label class="row " for="gCem"><span class="lbl">Cemento</span><span class="ctrl"><input id="gCem" type="number" inputmode="decimal" value="0.9" step="0.01"><span class="u">kgCO&#8322;/kg</span></span></label><label class="row " for="gScm"><span class="lbl">SCM</span><span class="ctrl"><input id="gScm" type="number" inputmode="decimal" value="0.04" step="0.01"><span class="u">kgCO&#8322;/kg</span></span></label><label class="row " for="gArena"><span class="lbl">Arena</span><span class="ctrl"><input id="gArena" type="number" inputmode="decimal" value="0.01" step="0.01"><span class="u">kgCO&#8322;/kg</span></span></label><label class="row " for="gAdit"><span class="lbl">Aditivo</span><span class="ctrl"><input id="gAdit" type="number" inputmode="decimal" value="2.1" step="0.01"><span class="u">kgCO&#8322;/L</span></span></label>
+    </details>
+  </section>
 
-    <section class="results">
-      <div class="statusbar" id="statusbar"></div>
+  <button class="btn btn-primary" id="recalcular">Recalcular todo</button>
+  <footer>w/p m&aacute;x 0.50 &#183; m&iacute;n 50% cemento del polvo &#183; m&iacute;n 60% arena de la masa</footer>
+</section>
 
-      <div class="card">
-        <h2>3 · Masas resultantes (kg/m³)</h2>
-        <table id="tblMasas"></table>
-      </div>
+<section class="view" id="v-mezcla" role="tabpanel" aria-labelledby="tab-mezcla" hidden>
+  <p class="eyebrow">Cumplimiento del reglamento</p>
+  <div class="pills" id="statusbar"></div>
+  <div class="cols">
+    <section class="card"><h2>Masas por m&sup3;</h2><table id="tblMasas"></table></section>
+    <section class="card"><h2>Vol&uacute;menes <small>base 1000 L</small></h2><table id="tblVol"></table></section>
+  </div>
+  <section class="card key"><h2>Verificaci&oacute;n</h2><table id="tblVerif"></table></section>
+</section>
 
-      <div class="card">
-        <h2>4 · Volúmenes (base 1000 L)</h2>
-        <table id="tblVol"></table>
-      </div>
+<section class="view" id="v-costo" role="tabpanel" aria-labelledby="tab-costo" hidden>
+  <p class="eyebrow">Ap&eacute;ndice C</p>
+  <div class="cols">
+    <section class="card"><h2>Costo</h2><table id="tblCosto"></table></section>
+    <section class="card"><h2>Huella de carbono</h2><table id="tblGwp"></table></section>
+  </div>
+</section>
 
-      <div class="card">
-        <h2>5 · Verificación de cumplimiento</h2>
-        <table id="tblVerif"></table>
-      </div>
+<section class="view" id="v-lote" role="tabpanel" aria-labelledby="tab-lote" hidden>
+  <p class="eyebrow">Preparaci&oacute;n del lote</p>
+  <section class="card key">
+    <h2>Escalado al lote de competencia</h2>
+    <label class="row big" for="volLote"><span class="lbl">Volumen objetivo</span><span class="ctrl"><input id="volLote" type="number" inputmode="decimal" value="650" step="10"><span class="u">mL</span></span></label>
+    <table id="tblLote"></table>
+  </section>
 
-      <div class="twocol">
-        <div class="card">
-          <h2>6 · Costo</h2>
-          <table id="tblCosto"></table>
-        </div>
-        <div class="card">
-          <h2>7 · GWP</h2>
-          <table id="tblGwp"></table>
-        </div>
-      </div>
-
-      <div class="card highlight">
-        <h2>8 · Escalado a lote de competencia</h2>
-        <table id="tblLote"></table>
-      </div>
-
-      <div class="card highlight" id="moldCard">
-        <h2>9 · Simulador de llenado del molde ACI <small>(geometría del Apéndice B: placa 7.087 × 2.715 × 0.594 in, letras de 1.594 in a 0.531 in del borde inferior — entrada por arriba de la "a", respiradero sobre la "c", salida por arriba de la "i", Regla 4d)</small></h2>
-
-        <div class="field"><label>Tiempo de llenado</label><div class="inputunit"><input type="number" id="fillTime" value="12" step="1" min="1"><span class="unit">s</span></div></div>
-        <div class="field"><label>% de llenado del molde</label><div class="inputunit"><input type="number" id="fillPct" value="100" step="1" min="0" max="100"><span class="unit">%</span></div></div>
-
-        <div class="moldwrap">
-          <svg id="moldSvg" viewBox="0 0 708 372" preserveAspectRatio="xMidYMid meet">
+  <section class="card">
+    <h2>Llenado del molde <small>placa 7.087 &times; 2.715 &times; 0.594 in</small></h2>
+    <p class="note">Entrada por arriba de la <b>a</b>, respiradero sobre la <b>c</b>, salida por arriba de la <b>i</b> (Regla 4d).</p>
+    <label class="row " for="fillTime"><span class="lbl">Tiempo de llenado</span><span class="ctrl"><input id="fillTime" type="number" inputmode="decimal" value="12" step="1"><span class="u">s</span></span></label><label class="row " for="fillPct"><span class="lbl">Llenado del molde</span><span class="ctrl"><input id="fillPct" type="number" inputmode="decimal" value="100" step="1"><span class="u">%</span></span></label>
+    <div class="vizbox" style="margin:10px 0">
+      <svg id="moldSvg" viewBox="0 0 708 372" preserveAspectRatio="xMidYMid meet">
             <defs>
               <linearGradient id="mortarGrad" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stop-color="#e2c79c"/>
@@ -222,34 +295,36 @@ footer{margin-top:20px;color:var(--muted);font-size:0.75rem;text-align:center;li
 
             <g id="drops"></g>
           </svg>
-        </div>
+    </div>
+    <button class="btn btn-teal" id="verter">Verter mezcla</button>
+    <div class="pills" id="flowResult" style="margin-top:12px"></div>
+  </section>
+</section>
 
-        <button id="verter">Verter mezcla</button>
-        <div class="statusbar" id="flowResult"></div>
+<section class="view" id="v-estab" role="tabpanel" aria-labelledby="tab-estab" hidden>
+  <p class="eyebrow">20% de la calificaci&oacute;n</p>
+  <section class="card key">
+    <h2>Ensayo de estabilidad <small>R<sub>s</sub> = V&#8323;&#8320; / V&#8320;</small></h2>
+    <p class="note">Vierte <b>V&#8320;</b> mL de mortero fresco en la probeta (220&#8211;250 mL) y a los 30 min lee <b>V&#8323;&#8320;</b>, el volumen hasta la l&iacute;nea s&oacute;lido&#8211;l&iacute;quido.</p>
+    <label class="row big" for="v0"><span class="lbl">Volumen inicial V&#8320;</span><span class="ctrl"><input id="v0" type="number" inputmode="decimal" value="220" step="1"><span class="u">mL</span></span></label><label class="row big" for="v30"><span class="lbl">Lectura a 30 min V&#8323;&#8320;</span><span class="ctrl"><input id="v30" type="number" inputmode="decimal" value="216" step="0.1"><span class="u">mL</span></span></label>
+  </section>
+
+  <section class="card">
+    <h2>Resultado</h2>
+    <div class="tiles" id="sedScores"></div>
+    <div class="estgrid">
+      <div class="vizbox">
+        <svg id="probetaSvg" viewBox="0 0 220 250" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Probeta a escala con la l&iacute;nea s&oacute;lido-l&iacute;quido"></svg>
+        <div class="vizcap">L&iacute;quido claro sobre la l&iacute;nea s&oacute;lido&#8211;l&iacute;quido</div>
       </div>
-      <div class="card highlight" id="sedCard">
-        <h2>10 &#183; Estabilidad &#8212; ensayo de sedimentaci&oacute;n <small>(R<sub>s</sub> = V&#8323;&#8320;/V&#8320; &#183; Stability Score = 4&#183;(R<sub>s</sub> &#8722; 75) &#183; 20% de la calificaci&oacute;n total)</small></h2>
+      <table id="tblSed"></table>
+    </div>
+    <div class="pills" id="sedStatus" style="margin-top:14px"></div>
+  </section>
+  <footer>Stability Score = 4 &#183; (R<sub>s</sub> &#8722; 75), m&aacute;ximo 100 &#183; vale 20 puntos del concurso</footer>
+</section>
 
-        <p class="subnote">Se vierten <b>V&#8320;</b> mL de mortero fresco en la probeta (V&#8320; debe quedar entre 220 y 250 mL) y a los 30 minutos se lee <b>V&#8323;&#8320;</b>, el volumen hasta la <b>l&iacute;nea s&oacute;lido&#8211;l&iacute;quido</b>. Captura los dos vol&uacute;menes en el panel izquierdo: todo lo dem&aacute;s se recalcula solo.</p>
-
-        <div class="estgrid">
-          <div class="vizbox">
-            <svg id="probetaSvg" viewBox="0 0 220 250" preserveAspectRatio="xMidYMid meet"></svg>
-            <div class="vizcap">Probeta a escala &#183; l&iacute;quido claro por encima de la l&iacute;nea s&oacute;lido&#8211;l&iacute;quido</div>
-          </div>
-          <div>
-            <div class="scorewrap" id="sedScores"></div>
-            <table id="tblSed"></table>
-          </div>
-        </div>
-
-        <div class="statusbar" id="sedStatus" style="margin-top:16px"></div>
-      </div>
-    </section>
-  </div>
-
-  <footer>Reglamento ACI Mortar Workability Competition · Apéndice C para costo y GWP · w/p máx 0.50 · mín 50% cemento del polvo · mín 60% arena de la masa<br>Estabilidad: R<sub>s</sub> = V₃₀/V₀ · Stability Score = 4·(R<sub>s</sub> − 75), máximo 100 · vale 20 puntos de la calificación total</footer>
-</div>
+</main>
 
 <script>
 
@@ -517,6 +592,38 @@ function verterMezcla(){
 }
 
 document.getElementById('verter').addEventListener('click', verterMezcla);
+
+
+/* ================= navegacion tipo app ================= */
+const tabs  = [...document.querySelectorAll('.tab')];
+const vistas = [...document.querySelectorAll('.view')];
+
+function irA(clave, guardar){
+  tabs.forEach(b=>b.setAttribute('aria-selected', String(b.dataset.view===clave)));
+  vistas.forEach(v=>{ v.hidden = (v.id !== 'v-'+clave); });
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  if(guardar!==false){ try{ localStorage.setItem('tqro1-tab', clave); }catch(e){} }
+}
+tabs.forEach(b=>b.addEventListener('click', ()=>irA(b.dataset.view)));
+try{
+  const guardada = localStorage.getItem('tqro1-tab');
+  if(guardada && document.getElementById('v-'+guardada)) irA(guardada, false);
+}catch(e){}
+
+/* aviso de "anadir a pantalla de inicio" solo en Safari de iPhone/iPad */
+(function(){
+  const tip = document.getElementById('installTip');
+  const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const instalada = window.navigator.standalone === true ||
+                    window.matchMedia('(display-mode: standalone)').matches;
+  let oculto = false;
+  try{ oculto = localStorage.getItem('tqro1-tip')==='off'; }catch(e){}
+  if(ios && !instalada && !oculto) tip.classList.add('show');
+  document.getElementById('closeTip').addEventListener('click', ()=>{
+    tip.classList.remove('show');
+    try{ localStorage.setItem('tqro1-tip','off'); }catch(e){}
+  });
+})();
 
 </script>
 </body>
