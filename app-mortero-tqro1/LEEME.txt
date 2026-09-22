@@ -1,0 +1,30 @@
+MORTERO TQRO1 - app del ACI Tec Queretaro Chapter
+=================================================
+
+QUE CONTIENE ESTA CARPETA
+  index.html             la app (abrela con doble clic para probarla)
+  manifest.webmanifest   datos de instalacion (nombre, colores, iconos)
+  icon-180.png           icono para la pantalla de inicio de iPhone/iPad
+  icon-192.png           icono para Android y para la pestana del navegador
+  icon-512.png           icono grande (splash e instalacion en Android)
+
+COMO SUBIRLA
+  Sube LA CARPETA COMPLETA, con los cinco archivos juntos y con los
+  mismos nombres. Los iconos y el manifest se cargan por ruta relativa:
+  si se separan del index.html, la app funciona pero pierde el icono.
+
+  Sirve para GitHub Pages, Netlify, Vercel o cualquier hosting normal.
+  Como el archivo principal se llama index.html, la direccion queda
+  limpia, por ejemplo:  https://tu-dominio.com/mortero-tqro1/
+
+PARA INSTALARLA EN EL IPHONE
+  1. Abre la direccion EN SAFARI (no en Chrome: iOS solo deja instalar
+     desde Safari).
+  2. Toca el boton Compartir (el cuadrito con la flecha hacia arriba).
+  3. Elige "Anadir a pantalla de inicio".
+  4. Queda con el logo del capitulo y abre en pantalla completa, sin
+     la barra del navegador.
+
+NOTA
+  El icono solo aparece cuando la app esta subida a un servidor.
+  Abriendo el archivo directo desde el telefono no se puede instalar.
